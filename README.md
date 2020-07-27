@@ -1,2 +1,2 @@
-# consola
+# Consola
 Consola de MIRRIT

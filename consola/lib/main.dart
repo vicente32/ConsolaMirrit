@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jmc_hh/src/blocs/provider.dart';
-import 'package:jmc_hh/src/pages/general/menuppal_page.dart';
-import 'package:jmc_hh/src/routes/routes.dart';
-import 'package:jmc_hh/src/share_prefs/preferencia_usuario.dart';
+import 'src/blocs/provider.dart';
+import 'src/pages/general/menuppal_page.dart';
+import 'src/routes/routes.dart';
+import 'src/share_prefs/preferencia_usuario.dart';
 
 void main() async {
   /* Se cargan preferencias */

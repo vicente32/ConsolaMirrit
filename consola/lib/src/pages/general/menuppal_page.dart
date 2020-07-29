@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MenuPrincipalPage extends StatelessWidget {
-  static final String routName = 'menuppal';
+  static final String routName = 'MenuPrincipalPage';
 
   /* --------- build ---------- */
   @override

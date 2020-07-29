@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'settings_page.dart';
+
 class MenuPrincipalPage extends StatelessWidget {
   static final String routName = 'MenuPrincipalPage';
 
@@ -74,7 +76,7 @@ class MenuPrincipalPage extends StatelessWidget {
         minWidth: 250.0,
         height: 60.0,
         child: RaisedButton(
-          child: Text('Sincronizar Articulos DRAGON'),
+          child: Text('Sincronizar Articulos Dragon'),
           color: Colors.blue,
           textColor: Colors.white,
           shape: StadiumBorder(),
@@ -104,7 +106,7 @@ class MenuPrincipalPage extends StatelessWidget {
           color: Colors.blue,
           textColor: Colors.white,
           shape: StadiumBorder(),
-          onPressed: () => _procesarAccionBotonTransferencia(context),
+          onPressed: () => _procesarAccionBotonSettings(context),
         ));
   }
 
@@ -123,5 +125,9 @@ class MenuPrincipalPage extends StatelessWidget {
 
   _procesarAccionBotonTransferencia(BuildContext context) {
     //Navigator.pushNamed(context, MenuTransferenciaPage.routName);
+  }
+
+  _procesarAccionBotonSettings(BuildContext context) {
+    Navigator.pushNamed(context, SettingsPage.routName);
   }
 }

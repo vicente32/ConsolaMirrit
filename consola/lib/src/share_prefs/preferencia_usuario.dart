@@ -17,22 +17,13 @@ class PreferenciasUsuario {
   }
 
   /* Configuracion */
-  get url {
-    return _prefs.getString('url') ?? '';
+  get ip {
+    return _prefs.getString('ip') ?? '';
   }
 
-  set url(String value) {
-    _prefs.setString('url', value);
+  set ip(String value) {
+    _prefs.setString('ip', value);
   }
-
-  get entorno {
-    return _prefs.getString('entorno') ?? '';
-  }
-
-  set entorno(String value) {
-    _prefs.setString('entorno', value);
-  }
-
   /* Login */
   get user {
     return _prefs.getString('user') ?? '';

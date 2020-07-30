@@ -24,6 +24,7 @@ class PreferenciasUsuario {
   set ip(String value) {
     _prefs.setString('ip', value);
   }
+
   /* Login */
   get user {
     return _prefs.getString('user') ?? '';
@@ -31,5 +32,13 @@ class PreferenciasUsuario {
 
   set user(String value) {
     _prefs.setString('user', value);
+  }
+
+  get password {
+    return _prefs.getString('password') ?? '';
+  }
+
+  set password(String value) {
+    _prefs.setString('password', value);
   }
 }

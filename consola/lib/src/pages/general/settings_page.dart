@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jmc_hh/src/widgets/menu_widgets.dart';
-
 import '../../share_prefs/preferencia_usuario.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -14,8 +13,6 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   TextEditingController _textControllerIp;
 
-  
-  
   /* PREFERENCIAS */
   final prefs = new PreferenciasUsuario();
   String radioItem;
@@ -42,7 +39,7 @@ class _SettingsPageState extends State<SettingsPage> {
       // action button
       IconButton(
         icon: Icon(Icons.save),
-        onPressed: ()  =>Navigator.pop(context),
+        onPressed: () => Navigator.pop(context),
       ),
       IconButton(
         icon: Icon(Icons.close),
@@ -58,11 +55,11 @@ class _SettingsPageState extends State<SettingsPage> {
         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
         children: <Widget>[
           _crearInputIp(),
-           SizedBox(height: 30),
-           _crearInputUser(),
-           SizedBox(height: 30),
-           _crearInputPassword(),
-           SizedBox(height: 30),
+          SizedBox(height: 30),
+          _crearInputUser(),
+          SizedBox(height: 30),
+          _crearInputPassword(),
+          SizedBox(height: 30),
         ],
       ),
     );
@@ -84,19 +81,19 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-
   Widget _crearInputUser() {
     return StreamBuilder(
       initialData: prefs.user,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Container(
             child: TextField(
-              decoration: InputDecoration(
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+          decoration: InputDecoration(
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
               helperText: 'User',
               errorText: snapshot.error,
               icon: Icon(Icons.account_circle)),
-            onChanged: (value) {
+          onChanged: (value) {
             prefs.user = value;
           },
         ));
@@ -104,23 +101,22 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-
-    Widget _crearInputPassword() {
+  Widget _crearInputPassword() {
     return StreamBuilder(
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return Container(
-            child: TextField(
-              obscureText: true,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-                helperText: 'Password',
-                errorText: snapshot.error,
-                icon: Icon(Icons.lock)),
-              onChanged: (value) {
-              },
-          )
-        );
-      }
-    );
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+      return Container(
+          child: TextField(
+        obscureText: true,
+        decoration: InputDecoration(
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+            helperText: 'Password',
+            errorText: snapshot.error,
+            icon: Icon(Icons.lock)),
+        onChanged: (value) {
+          prefs.password = value;
+        },
+      ));
+    });
   }
 }

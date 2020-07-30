@@ -39,7 +39,16 @@ class _SettingsPageState extends State<SettingsPage> {
       // action button
       IconButton(
         icon: Icon(Icons.save),
-        onPressed: () => Navigator.pop(context),
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Datos Registrados"),
+                  shape: StadiumBorder(),
+                );
+              });
+        },
       ),
       IconButton(
         icon: Icon(Icons.backspace),

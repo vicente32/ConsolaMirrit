@@ -19,11 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Provider(
-        child: MaterialApp(
-      title: 'Consola MIRRIT',
-      debugShowCheckedModeBanner: false,
-      initialRoute: MenuPrincipalPage.routName,
-      routes: getApplicationRoutes(),
+      child: MaterialApp(
+        title: 'Consola MIRRIT',
+        debugShowCheckedModeBanner: false,
+        initialRoute: MenuPrincipalPage.routName,
+        routes: getApplicationRoutes(),
     ));
   }
 }

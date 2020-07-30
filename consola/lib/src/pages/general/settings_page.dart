@@ -42,8 +42,8 @@ class _SettingsPageState extends State<SettingsPage> {
         onPressed: () => Navigator.pop(context),
       ),
       IconButton(
-        icon: Icon(Icons.close),
-        onPressed: () {},
+        icon: Icon(Icons.backspace),
+        onPressed: () => Navigator.pop(context),
       )
     ]);
   }

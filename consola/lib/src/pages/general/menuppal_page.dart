@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../estadoSistema/estadosistema_page.dart';
 import 'settings_page.dart';
 
 class MenuPrincipalPage extends StatelessWidget {
@@ -29,7 +29,7 @@ class MenuPrincipalPage extends StatelessWidget {
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                _crearBotonPicking(context),
+                _crearBotonEstadoSistema(context),
                 SizedBox(height: 20),
                 _crearBotonRecepcion(context),
                 SizedBox(height: 20),
@@ -45,7 +45,7 @@ class MenuPrincipalPage extends StatelessWidget {
   }
 
   /* --------- componentes del form ---------- */
-  Widget _crearBotonPicking(BuildContext context) {
+  Widget _crearBotonEstadoSistema(BuildContext context) {
     return ButtonTheme(
         minWidth: 250.0,
         height: 60.0,
@@ -54,7 +54,7 @@ class MenuPrincipalPage extends StatelessWidget {
           color: Colors.blue,
           textColor: Colors.white,
           shape: StadiumBorder(),
-          onPressed: () => _procesarAccionBotonPicking(context),
+          onPressed: () => _procesarAccionEstadoSistema(context),
         ));
   }
 
@@ -111,8 +111,8 @@ class MenuPrincipalPage extends StatelessWidget {
   }
 
   /* --------- acciones ---------- */
-  _procesarAccionBotonPicking(BuildContext context) {
-    //Navigator.pushNamed(context, MenuPickingPage.routName);
+  _procesarAccionEstadoSistema(BuildContext context) {
+    Navigator.pushNamed(context, EstadoSistemaPage.routName);
   }
 
   _procesarAccionBotonRecepcion(BuildContext context) {

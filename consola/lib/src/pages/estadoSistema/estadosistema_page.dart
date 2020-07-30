@@ -20,8 +20,27 @@ class EstadoSistemaPage extends StatelessWidget {
 
   /* --------- form principal ---------- */
   Widget _crearMenuForm(BuildContext context) {
-    return SingleChildScrollView(child: _crearTabla(context));
+    return Column( children: <Widget>[
+      SizedBox(height:15),
+      _crearInputVersion(),
+      SizedBox(height:15),
+      _crearTabla(context),
+    ]);
   }
+
+
+  /* Input verison */
+  Widget _crearInputVersion() {
+    return TextField(
+      autofocus: true,
+      textCapitalization: TextCapitalization.sentences,
+      decoration: InputDecoration(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
+          helperText: 'Version',
+          icon: Icon(Icons.arrow_right)),
+    );
+  }
+
 
   /* --------------Tabla----------*/
   Widget _crearTabla(BuildContext context) {
@@ -32,24 +51,32 @@ class EstadoSistemaPage extends StatelessWidget {
     ], rows: [
       DataRow(cells: [
         DataCell(Text("ActiveMQ")),
-        DataCell(Text("EstadoRojo")),
+        DataCell(_estado()),
         DataCell(Text("DETALLE"))
       ]),
       DataRow(cells: [
         DataCell(Text("Woo")),
-        DataCell(Text("EstadoRojo")),
+        DataCell(_estado()),
         DataCell(Text("DETALLE"))
       ]),
       DataRow(cells: [
         DataCell(Text("Shopify")),
-        DataCell(Text("EstadoRojo")),
+        DataCell(_estado()),
         DataCell(Text("DETALLE"))
       ]),
       DataRow(cells: [
         DataCell(Text("DragonFish")),
-        DataCell(Text("EstadoRojo")),
+        DataCell(_estado()),
         DataCell(Text("DETALLE"))
       ])
     ]);
   }
+
+  Widget _estado() {
+    return Text("No funciona");
+    //logica para el estado del servicio
+
+  }
+
+
 }

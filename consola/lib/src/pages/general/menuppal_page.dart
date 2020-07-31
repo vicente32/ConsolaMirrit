@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../estadoSistema/estadosistema_page.dart';
+import '../SincronizarE-commerce/SincronizarECommerce_page.dart';
 import 'settings_page.dart';
 
 class MenuPrincipalPage extends StatelessWidget {
@@ -124,7 +125,7 @@ class MenuPrincipalPage extends StatelessWidget {
   }
 
   _procesarAccionBotonTransferencia(BuildContext context) {
-    //Navigator.pushNamed(context, MenuTransferenciaPage.routName);
+    Navigator.pushNamed(context, SincronizarECommercePage.routName);
   }
 
   _procesarAccionBotonSettings(BuildContext context) {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:jmc_hh/src/pages/estadoDr/sincronizarDragon_page.dart';
+import 'settings_page.dart';
+import '../estadoDr/sincronizarDragon_page.dart';
+import '../reprArt/reprocesarArt_page.dart';
 import '../estadoSistema/estadosistema_page.dart';
 import '../SincronizarE-commerce/SincronizarECommerce_page.dart';
-import 'settings_page.dart';
 
 class MenuPrincipalPage extends StatelessWidget {
   static final String routName = 'MenuPrincipalPage';
@@ -69,7 +70,10 @@ class MenuPrincipalPage extends StatelessWidget {
           color: Colors.blue,
           textColor: Colors.white,
           shape: StadiumBorder(),
-          onPressed: () => _procesarProcesarArt(context),
+          onPressed: () {
+           _procesarProcesarArt(context);
+            print("reprocesar articulo");          
+          }
         ));
   }
 
@@ -118,20 +122,15 @@ class MenuPrincipalPage extends StatelessWidget {
   }
 
   _procesarProcesarArt(BuildContext context) {
-    //Navigator.pushNamed(context, MenuRecepcionPage.routName);
+    Navigator.pushNamed(context, ReprocesarArticuloPage.routName);
   }
 
   _procesarSincronizarDragon(BuildContext context) {
     Navigator.pushNamed(context, SincronizarDragonPage.routName);
   }
 
-<<<<<<< HEAD
-  _procesarAccionBotonTransferencia(BuildContext context) {
-    Navigator.pushNamed(context, SincronizarECommercePage.routName);
-=======
   _procesarSincronizarEcommerce(BuildContext context) {
-    //Navigator.pushNamed(context, MenuTransferenciaPage.routName);
->>>>>>> 623a0eec531ba33b1fe718112ca439ef5a3c6fed
+    Navigator.pushNamed(context, SincronizarECommercePage.routName);
   }
 
   _procesarAccionBotonSettings(BuildContext context) {

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
+import '../pages/reprArt/reprocesarArt_page.dart';
 import '../pages/SincronizarE-commerce/SincronizarECommerce_page.dart';
-=======
 import '../pages/estadoDr/sincronizarDragon_page.dart';
->>>>>>> 623a0eec531ba33b1fe718112ca439ef5a3c6fed
 import '../pages/estadoSistema/estadosistema_page.dart';
 import '../pages/general/menuppal_page.dart';
 import '../pages/general/settings_page.dart';
@@ -20,6 +18,9 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
 
     /* ESTADO SISTEMA */
     EstadoSistemaPage.routName: (BuildContext context) => EstadoSistemaPage(),
+
+    /* ESTADO SISTEMA */
+    ReprocesarArticuloPage.routName: (BuildContext context) => ReprocesarArticuloPage(),
 
     /* SINCRONIZAR E-COMMERCE */
     SincronizarECommercePage.routName: (BuildContext context) =>

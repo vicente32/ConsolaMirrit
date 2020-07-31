@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jmc_hh/src/pages/estadoDr/sincronizarDragon_page.dart';
 import '../estadoSistema/estadosistema_page.dart';
 import 'settings_page.dart';
 
@@ -31,11 +32,11 @@ class MenuPrincipalPage extends StatelessWidget {
               children: <Widget>[
                 _crearBotonEstadoSistema(context),
                 SizedBox(height: 20),
-                _crearBotonRecepcion(context),
+                _crearBotonProcesarArt(context),
                 SizedBox(height: 20),
-                _crearBotonRecuento(context),
+                _crearBotonSincronizarDragon(context),
                 SizedBox(height: 20),
-                _crearBotonTransferencia(context),
+                _crearBotonSincronizarEcommerce(context),
                 SizedBox(height: 20),
                 _crearBotonSettings(context),
               ]),
@@ -58,7 +59,7 @@ class MenuPrincipalPage extends StatelessWidget {
         ));
   }
 
-  _crearBotonRecepcion(BuildContext context) {
+  _crearBotonProcesarArt(BuildContext context) {
     return ButtonTheme(
         minWidth: 250.0,
         height: 60.0,
@@ -67,11 +68,11 @@ class MenuPrincipalPage extends StatelessWidget {
           color: Colors.blue,
           textColor: Colors.white,
           shape: StadiumBorder(),
-          onPressed: () => _procesarAccionBotonRecepcion(context),
+          onPressed: () => _procesarProcesarArt(context),
         ));
   }
 
-  _crearBotonRecuento(BuildContext context) {
+  _crearBotonSincronizarDragon(BuildContext context) {
     return ButtonTheme(
         minWidth: 250.0,
         height: 60.0,
@@ -80,11 +81,11 @@ class MenuPrincipalPage extends StatelessWidget {
           color: Colors.blue,
           textColor: Colors.white,
           shape: StadiumBorder(),
-          onPressed: () => _procesarAccionBotonRecuento(context),
+          onPressed: () => _procesarSincronizarDragon(context),
         ));
   }
 
-  _crearBotonTransferencia(BuildContext context) {
+  _crearBotonSincronizarEcommerce(BuildContext context) {
     return ButtonTheme(
         minWidth: 250.0,
         height: 60.0,
@@ -93,7 +94,7 @@ class MenuPrincipalPage extends StatelessWidget {
           color: Colors.blue,
           textColor: Colors.white,
           shape: StadiumBorder(),
-          onPressed: () => _procesarAccionBotonTransferencia(context),
+          onPressed: () => _procesarSincronizarEcommerce(context),
         ));
   }
 
@@ -115,15 +116,15 @@ class MenuPrincipalPage extends StatelessWidget {
     Navigator.pushNamed(context, EstadoSistemaPage.routName);
   }
 
-  _procesarAccionBotonRecepcion(BuildContext context) {
+  _procesarProcesarArt(BuildContext context) {
     //Navigator.pushNamed(context, MenuRecepcionPage.routName);
   }
 
-  _procesarAccionBotonRecuento(BuildContext context) {
-    //Navigator.pushNamed(context, MenuRecuentoPage.routName);
+  _procesarSincronizarDragon(BuildContext context) {
+    Navigator.pushNamed(context, SincronizarDragonPage.routName);
   }
 
-  _procesarAccionBotonTransferencia(BuildContext context) {
+  _procesarSincronizarEcommerce(BuildContext context) {
     //Navigator.pushNamed(context, MenuTransferenciaPage.routName);
   }
 

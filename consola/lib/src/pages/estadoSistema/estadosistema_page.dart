@@ -57,22 +57,22 @@ class EstadoSistemaPage extends StatelessWidget {
       DataRow(cells: [
         DataCell(Text("ActiveMQ")),
         DataCell(_estado()),
-        DataCell(_botonDetalle())
+        DataCell(_botonDetalle("ActiveMQ"))
       ]),
       DataRow(cells: [
         DataCell(Text("Woo")),
         DataCell(_estado()),
-        DataCell(_botonDetalle())
+        DataCell(_botonDetalle("Woo"))
       ]),
       DataRow(cells: [
         DataCell(Text("Shopify")),
         DataCell(_estado()),
-        DataCell(_botonDetalle())
+        DataCell(_botonDetalle("Shopify"))
       ]),
       DataRow(cells: [
         DataCell(Text("DragonFish")),
         DataCell(_estado()),
-        DataCell(_botonDetalle())
+        DataCell(_botonDetalle("DragonFish"))
       ])
     ]);
   }
@@ -82,7 +82,7 @@ class EstadoSistemaPage extends StatelessWidget {
     //logica para el estado del servicio
   }
 
-  Widget _botonDetalle() {
+  Widget _botonDetalle(String servicio) {
     return RaisedButton(
       child: Text("DETALLE"),
       onPressed: () {},

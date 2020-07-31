@@ -10,7 +10,14 @@ class EstadoSistemaPage extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Estado Sistema'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.backspace),
+            onPressed: () => Navigator.pop(context),
+          )
+        ],
       ),
+      resizeToAvoidBottomPadding: false,
       body: Center(
           child: Stack(children: <Widget>[
         _crearMenuForm(context),
@@ -20,16 +27,15 @@ class EstadoSistemaPage extends StatelessWidget {
 
   /* --------- form principal ---------- */
   Widget _crearMenuForm(BuildContext context) {
-    return Column( children: <Widget>[
-      SizedBox(height:15),
+    return Column(children: <Widget>[
+      SizedBox(height: 15),
       _crearInputVersion(),
-      SizedBox(height:15),
+      SizedBox(height: 15),
       _crearTabla(context),
     ]);
   }
 
-
-  /* Input verison */
+  /* ------------Input verison---------------- */
   Widget _crearInputVersion() {
     return TextField(
       autofocus: true,
@@ -41,7 +47,6 @@ class EstadoSistemaPage extends StatelessWidget {
     );
   }
 
-
   /* --------------Tabla----------*/
   Widget _crearTabla(BuildContext context) {
     return DataTable(columns: [
@@ -52,22 +57,22 @@ class EstadoSistemaPage extends StatelessWidget {
       DataRow(cells: [
         DataCell(Text("ActiveMQ")),
         DataCell(_estado()),
-        DataCell(Text("DETALLE"))
+        DataCell(_botonDetalle())
       ]),
       DataRow(cells: [
         DataCell(Text("Woo")),
         DataCell(_estado()),
-        DataCell(Text("DETALLE"))
+        DataCell(_botonDetalle())
       ]),
       DataRow(cells: [
         DataCell(Text("Shopify")),
         DataCell(_estado()),
-        DataCell(Text("DETALLE"))
+        DataCell(_botonDetalle())
       ]),
       DataRow(cells: [
         DataCell(Text("DragonFish")),
         DataCell(_estado()),
-        DataCell(Text("DETALLE"))
+        DataCell(_botonDetalle())
       ])
     ]);
   }
@@ -75,8 +80,12 @@ class EstadoSistemaPage extends StatelessWidget {
   Widget _estado() {
     return Text("No funciona");
     //logica para el estado del servicio
-
   }
 
-
+  Widget _botonDetalle() {
+    return RaisedButton(
+      child: Text("DETALLE"),
+      onPressed: () {},
+    );
+  }
 }

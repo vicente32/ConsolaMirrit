@@ -19,14 +19,14 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     /* ESTADO SISTEMA */
     EstadoSistemaPage.routName: (BuildContext context) => EstadoSistemaPage(),
 
-    /* ESTADO SISTEMA */
+    /* REPROCESAR ARTÍCLO */
     ReprocesarArticuloPage.routName: (BuildContext context) => ReprocesarArticuloPage(),
 
     /* SINCRONIZAR E-COMMERCE */
-    SincronizarECommercePage.routName: (BuildContext context) =>
-        SincronizarECommercePage(),
+    SincronizarECommercePage.routName: (BuildContext context) => SincronizarECommercePage(),
 
     /* SETTINGS */
     SettingsPage.routName: (BuildContext context) => SettingsPage(),
   };
 }
+   

@@ -66,7 +66,7 @@ class MenuPrincipalPage extends StatelessWidget {
         minWidth: 250.0,
         height: 60.0,
         child: RaisedButton(
-          child: Text('Procesar Articulo'),
+          child: Text('Reprocesar Articulo'),
           color: Colors.blue,
           textColor: Colors.white,
           shape: StadiumBorder(),

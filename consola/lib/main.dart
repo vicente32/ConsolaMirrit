@@ -24,6 +24,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: MenuPrincipalPage.routName,
         routes: getApplicationRoutes(),
+        theme: ThemeData(
+          primarySwatch: Colors.blue
+        )
     ));
   }
 }

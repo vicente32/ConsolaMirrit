@@ -45,12 +45,12 @@ class _NewTodoViewState extends State<NuevoArticuloPage> {
             ),
             SizedBox(height: 20.0,),
             RaisedButton(
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
               child: Text(
                 'OK',
                 style: TextStyle(
                   // ignore: deprecated_member_use
-                  color: Theme.of(context).primaryTextTheme.title.color
+                  color: Colors.blue
                 ),
               ),
               elevation: 3.0,

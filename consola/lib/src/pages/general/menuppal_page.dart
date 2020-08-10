@@ -14,7 +14,13 @@ class MenuPrincipalPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Consola MIRRIT'),
+        title: Text(
+          'Consola MIRRIT',
+            style: TextStyle(
+            fontSize: 25.0,
+            fontWeight: FontWeight.bold,
+          ),  
+        ),
       ),
       body: Center(
           child: Stack(children: <Widget>[
@@ -54,10 +60,13 @@ class MenuPrincipalPage extends StatelessWidget {
         height: 60.0,
         child: RaisedButton(
           child: Text('Estado de Sistema'),
-          color: Colors.blue,
-          textColor: Colors.white,
+          color: Colors.white,
+          textColor: Colors.blue,
           shape: StadiumBorder(),
-          onPressed: () => _procesarAccionEstadoSistema(context),
+          onPressed: () {
+            _procesarAccionEstadoSistema(context);
+            print("Abrimos estado sistema");
+          } 
         ));
   }
 
@@ -67,8 +76,8 @@ class MenuPrincipalPage extends StatelessWidget {
         height: 60.0,
         child: RaisedButton(
           child: Text('Reprocesar Articulo'),
-          color: Colors.blue,
-          textColor: Colors.white,
+          color: Colors.white,
+          textColor: Colors.blue,
           shape: StadiumBorder(),
           onPressed: () {
            _procesarProcesarArt(context);
@@ -83,8 +92,8 @@ class MenuPrincipalPage extends StatelessWidget {
         height: 60.0,
         child: RaisedButton(
           child: Text('Sincronizar Articulos Dragon'),
-          color: Colors.blue,
-          textColor: Colors.white,
+          color: Colors.white,
+          textColor: Colors.blue,
           shape: StadiumBorder(),
           onPressed: () => _procesarSincronizarDragon(context),
         ));
@@ -96,8 +105,8 @@ class MenuPrincipalPage extends StatelessWidget {
         height: 60.0,
         child: RaisedButton(
           child: Text('Sincronizar E-Commerce'),
-          color: Colors.blue,
-          textColor: Colors.white,
+          color: Colors.white,
+          textColor: Colors.blue,
           shape: StadiumBorder(),
           onPressed: () => _procesarSincronizarEcommerce(context),
         ));
@@ -109,8 +118,8 @@ class MenuPrincipalPage extends StatelessWidget {
         height: 60.0,
         child: RaisedButton(
           child: Text('Settings'),
-          color: Colors.blue,
-          textColor: Colors.white,
+          color: Colors.white,
+          textColor: Colors.blue,
           shape: StadiumBorder(),
           onPressed: () => _procesarAccionBotonSettings(context),
         ));

@@ -84,6 +84,8 @@ class EstadoSistemaPage extends StatelessWidget {
 
   Widget _botonDetalle(String servicio) {
     return RaisedButton(
+      shape: StadiumBorder(),
+      color: Colors.indigo[50],
       child: Text("DETALLE"),
       onPressed: () {},
     );

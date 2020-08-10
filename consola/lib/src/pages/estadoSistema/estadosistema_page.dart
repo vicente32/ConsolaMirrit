@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import '../../providers/estadoDr/status_provider.dart';
 
 class EstadoSistemaPage extends StatelessWidget {
   static final String routName = 'estadoSistema';
+  final getStatus = new StatusProvider();
+
+  String estadoA = "No funciona";
+  String estadoD = "No funciona";
+  String estadoW = "No funciona";
+  String estadoS = "No funciona";
 
   /* --------- build ---------- */
   @override
   Widget build(BuildContext context) {
+    _estado();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -56,30 +64,29 @@ class EstadoSistemaPage extends StatelessWidget {
     ], rows: [
       DataRow(cells: [
         DataCell(Text("ActiveMQ")),
-        DataCell(_estado()),
+        DataCell(Text(estadoA)),
         DataCell(_botonDetalle("ActiveMQ"))
       ]),
       DataRow(cells: [
         DataCell(Text("Woo")),
-        DataCell(_estado()),
+        DataCell(Text(estadoW)),
         DataCell(_botonDetalle("Woo"))
       ]),
       DataRow(cells: [
         DataCell(Text("Shopify")),
-        DataCell(_estado()),
+        DataCell(Text(estadoS)),
         DataCell(_botonDetalle("Shopify"))
       ]),
       DataRow(cells: [
         DataCell(Text("DragonFish")),
-        DataCell(_estado()),
+        DataCell(Text(estadoD)),
         DataCell(_botonDetalle("DragonFish"))
       ])
     ]);
   }
 
-  Widget _estado() {
-    return Text("No funciona");
-    //logica para el estado del servicio
+  void _estado() {
+    getStatus.getStatus();
   }
 
   Widget _botonDetalle(String servicio) {

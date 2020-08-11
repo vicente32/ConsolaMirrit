@@ -15,7 +15,7 @@ class Validators {
     if (password.length >= 4) {
       sink.add(password);
     } else {
-      sink.addError('Ingrese la password');
+      sink.addError('Ingrese la contraseña');
     }
   });
 }

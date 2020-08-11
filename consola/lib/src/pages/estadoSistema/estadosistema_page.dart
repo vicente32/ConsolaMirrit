@@ -94,7 +94,15 @@ class EstadoSistemaPage extends StatelessWidget {
       shape: StadiumBorder(),
       color: Colors.indigo[50],
       child: Text("DETALLE"),
-      onPressed: () {},
+      onPressed: () => _processActionDetailButton(),
     );
   }
+
+  /* -------------acciones------------- */
+   
+   Widget _processActionDetailButton() {
+
+     
+   }
+
 }

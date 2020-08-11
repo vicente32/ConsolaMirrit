@@ -12,6 +12,8 @@ class SettingsPage extends StatefulWidget {
 @override
 class _SettingsPageState extends State<SettingsPage> {
   TextEditingController _textControllerIp;
+  TextEditingController _textControllerUser;
+  TextEditingController _textControllerPass;
 
   /* PREFERENCIAS */
   final prefs = new PreferenciasUsuario();
@@ -22,6 +24,8 @@ class _SettingsPageState extends State<SettingsPage> {
   void initState() {
     super.initState();
     _textControllerIp = new TextEditingController(text: prefs.ip);
+    _textControllerUser = new TextEditingController(text: prefs.user);
+    _textControllerPass = new TextEditingController(text: prefs.password);
   }
 
   /* --------- build ---------- */
@@ -96,9 +100,9 @@ class _SettingsPageState extends State<SettingsPage> {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Container(
             child: TextField(
-          decoration: InputDecoration(
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+              controller: _textControllerUser,
+              decoration: InputDecoration(
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
               helperText: 'User',
               errorText: snapshot.error,
               icon: Icon(Icons.account_circle)),
@@ -115,10 +119,10 @@ class _SettingsPageState extends State<SettingsPage> {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
       return Container(
           child: TextField(
-        obscureText: true,
-        decoration: InputDecoration(
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+            controller: _textControllerPass,
+            obscureText: true,
+            decoration: InputDecoration(
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
             helperText: 'Password',
             errorText: snapshot.error,
             icon: Icon(Icons.lock)),

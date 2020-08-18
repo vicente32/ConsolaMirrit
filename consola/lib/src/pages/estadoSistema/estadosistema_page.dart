@@ -100,7 +100,7 @@ class EstadoSistemaPage extends StatelessWidget {
 
   /* -------------acciones------------- */
    
-   Widget _processActionDetailButton(String servicio) {
+   void _processActionDetailButton(String servicio) {
 
 
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:jmc_hh/src/blocs/status_bloc.dart';
 
 class Provider extends InheritedWidget {
   static Provider _instancia;
+  final statusBloc = new StatusBloc();
 
   factory Provider({Key key, Widget child}) {
     if (_instancia == null) {
@@ -15,4 +17,9 @@ class Provider extends InheritedWidget {
 
   @override
   bool updateShouldNotify(InheritedWidget oldWidget) => true;
+
+  static StatusBloc of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<Provider>().statusBloc;
+  }
+
 }

@@ -1,41 +1,56 @@
-	class GetStatusResponse {
-  DragonFish dragonFish;
-  Woo woo;
-  ActiveMQ activeMQ;
+	import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-  GetStatusResponse({this.dragonFish, this.woo, this.activeMQ});
+class GetStatusResponseBloc {
+  DragonFishBloc dragonFish;
+  WooBloc woo;
+  ActiveMQBloc activeMQ;
 
-  factory GetStatusResponse.fromJson(Map<String, dynamic> json) {
-    return GetStatusResponse(
-      dragonFish: DragonFish.fromJson(json['DragonFish']),
-      woo: Woo.fromJson(json['woo']),
-      activeMQ: ActiveMQ.fromJson(json['ActiveMQ']));
+  GetStatusResponseBloc({this.dragonFish, this.woo, this.activeMQ});
+
+  factory GetStatusResponseBloc.fromJson(Map<String, dynamic> json) {
+    return GetStatusResponseBloc(
+      dragonFish: DragonFishBloc.fromJson(json['DragonFish']),
+      woo: WooBloc.fromJson(json['woo']),
+      activeMQ: ActiveMQBloc.fromJson(json['ActiveMQ']));
   }
 }
 
-class DragonFish {
+class DragonFishBloc {
   bool flagDragonOK;
-  DragonFish({this.flagDragonOK});
+  DragonFishBloc({this.flagDragonOK});
 
-  factory DragonFish.fromJson(Map<String, dynamic> json) {
-    return DragonFish(flagDragonOK: json['flagDragonOK']);
+  factory DragonFishBloc.fromJson(Map<String, dynamic> json) {
+    return DragonFishBloc(flagDragonOK: json['flagDragonOK']);
   }
+     
+     Widget dragonState()  {
+     final checkDragon = new DragonFishBloc();
+     if (checkDragon.flagDragonOK == true) {
+      return Text("OK");
+     }
+     else{
+       return Text("Error");
+     }
+  }
+
+
 }
 
-class Woo {
+class WooBloc {
   bool flagWooOK;
-  Woo({this.flagWooOK});
+  WooBloc({this.flagWooOK});
 
-  factory Woo.fromJson(Map<String, dynamic> json) {
-    return Woo(flagWooOK: json['flagOK']);
+  factory WooBloc.fromJson(Map<String, dynamic> json) {
+    return WooBloc(flagWooOK: json['flagOK']);
   }
 }
 
-class ActiveMQ {
+class ActiveMQBloc {
   bool flagActiveMQOK;
-  ActiveMQ({this.flagActiveMQOK});
+  ActiveMQBloc({this.flagActiveMQOK});
 
-  factory ActiveMQ.fromJson(Map<String, dynamic> json) {
-    return ActiveMQ(flagActiveMQOK: json['flagActiveMQOK']);
+  factory ActiveMQBloc.fromJson(Map<String, dynamic> json) {
+    return ActiveMQBloc(flagActiveMQOK: json['flagActiveMQOK']);
   }
 }

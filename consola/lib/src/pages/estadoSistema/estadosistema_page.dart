@@ -1,18 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:jmc_hh/src/blocs/provider.dart';
+import 'package:jmc_hh/src/blocs/status_bloc.dart';
+import '../../models/estadoDr/status_response.dart';
 import '../../providers/estadoDr/dragon_provider.dart';
 
-class EstadoSistemaPage extends StatelessWidget {
+class EstadoSistemaPage extends StatefulWidget {
   static final String routName = 'estadoSistema';
+
+  @override
+  EstadoSistemaState  createState() => new EstadoSistemaState();
+
+}
+
+class EstadoSistemaState extends State<EstadoSistemaPage> {
+
   final getStatus = new StatusProvider();
+  final dragonState = new DragonFishBloc();
 
   String estadoA = "No funciona";
   String estadoD = "No funciona";
   String estadoW = "No funciona";
   String estadoS = "No funciona";
 
-  /* --------- build ---------- */
+  /* --------- build ---------- */    
   @override
   Widget build(BuildContext context) {
+    //_estadoDragon();    
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -34,11 +47,13 @@ class EstadoSistemaPage extends StatelessWidget {
 
   /* --------- form principal ---------- */
   Widget _crearMenuForm(BuildContext context) {
+    final bloc = Provider.of(context);
+    bloc.getStatusDragon();    
     return Column(children: <Widget>[
-      SizedBox(height: 15),
+      SizedBox(height: 30),
       _crearInputVersion(),
-      SizedBox(height: 15),
-      _crearTabla(context),
+      SizedBox(height: 30),
+      _crearTabla(context, bloc),
     ]);
   }
 
@@ -55,7 +70,9 @@ class EstadoSistemaPage extends StatelessWidget {
   }
 
   /* --------------Tabla----------*/
-  Widget _crearTabla(BuildContext context) {
+  Widget _crearTabla(BuildContext context, StatusBloc bloc) {
+    DragonFishBloc dragonFish = new DragonFishBloc();
+
     return DataTable(columns: [
       DataColumn(label: Text("Servicios")),
       DataColumn(label: Text("Estado")),
@@ -64,44 +81,66 @@ class EstadoSistemaPage extends StatelessWidget {
       DataRow(cells: [
         DataCell(Text("ActiveMQ")),
         DataCell(Text(estadoA)),
-        DataCell(_botonDetalleDragon("ActiveMQ"))
+        DataCell(_botonDetalleServicio(bloc))
       ]),
       DataRow(cells: [
         DataCell(Text("Woo")),
         DataCell(Text(estadoW)),
-        DataCell(_botonDetalleDragon("Woo"))
+        DataCell(_botonDetalleServicio(bloc))
       ]),
       DataRow(cells: [
         DataCell(Text("Shopify")),
         DataCell(Text(estadoS)),
-        DataCell(_botonDetalleDragon("Shopify"))
+        DataCell(_botonDetalleServicio(bloc))
       ]),
       DataRow(cells: [
         DataCell(Text("DragonFish")),
-        DataCell(Text(estadoD)),
-        DataCell(_botonDetalleDragon("DragonFish"))
+        DataCell(getEstadoDragon(bloc)),
+        DataCell(_botonDetalleServicio(bloc))
       ])
     ]);
   }
 
 /* ----------------- BOTONES ----------------- */
 
-  void _estadoDragon() {
-    getStatus.getStatus();
-  }
 
 
-  Widget _botonDetalleDragon(String servicio) {
+  Widget _botonDetalleServicio(StatusBloc bloc) {
     return RaisedButton(
-      shape: StadiumBorder(),
+      shape: StadiumBorder(), 
       color: Colors.indigo[50],
-      child: Text("DETALLE"),
-      onPressed: () => _estadoDragon(),
+      child: Text("DETALLLE"),
+      onPressed: () => dragonState
+
     );
   }
 
+
+
   /* -------------acciones------------- */
-   
- 
+
+  void _estadoDragon()async  {
+    await getStatus.getStatus();
+  }
+
+  Widget getEstadoDragon(StatusBloc bloc){
+      return StreamBuilder(
+        stream: bloc.estadoDragonStream,
+        builder: (BuildContext context,
+          AsyncSnapshot<bool> snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data) {
+              return Text('OK',
+                style: TextStyle(fontSize: 20));
+            }
+               else {
+                return Text('Error',
+                  style: TextStyle(fontSize: 20));
+              }
+            } else {
+              return Text("Procesando");
+            }
+          });
+  }
 
 }

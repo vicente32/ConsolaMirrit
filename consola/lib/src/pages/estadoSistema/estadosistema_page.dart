@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../providers/estadoDr/status_provider.dart';
+import '../../providers/estadoDr/dragon_provider.dart';
 
 class EstadoSistemaPage extends StatelessWidget {
   static final String routName = 'estadoSistema';
@@ -13,7 +13,6 @@ class EstadoSistemaPage extends StatelessWidget {
   /* --------- build ---------- */
   @override
   Widget build(BuildContext context) {
-    _estado();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -65,45 +64,44 @@ class EstadoSistemaPage extends StatelessWidget {
       DataRow(cells: [
         DataCell(Text("ActiveMQ")),
         DataCell(Text(estadoA)),
-        DataCell(_botonDetalle("ActiveMQ"))
+        DataCell(_botonDetalleDragon("ActiveMQ"))
       ]),
       DataRow(cells: [
         DataCell(Text("Woo")),
         DataCell(Text(estadoW)),
-        DataCell(_botonDetalle("Woo"))
+        DataCell(_botonDetalleDragon("Woo"))
       ]),
       DataRow(cells: [
         DataCell(Text("Shopify")),
         DataCell(Text(estadoS)),
-        DataCell(_botonDetalle("Shopify"))
+        DataCell(_botonDetalleDragon("Shopify"))
       ]),
       DataRow(cells: [
         DataCell(Text("DragonFish")),
         DataCell(Text(estadoD)),
-        DataCell(_botonDetalle("DragonFish"))
+        DataCell(_botonDetalleDragon("DragonFish"))
       ])
     ]);
   }
 
-  void _estado() {
+/* ----------------- BOTONES ----------------- */
+
+  void _estadoDragon() {
     getStatus.getStatus();
   }
 
-  Widget _botonDetalle(String servicio) {
+
+  Widget _botonDetalleDragon(String servicio) {
     return RaisedButton(
       shape: StadiumBorder(),
       color: Colors.indigo[50],
       child: Text("DETALLE"),
-      onPressed: () => _processActionDetailButton(servicio),
+      onPressed: () => _estadoDragon(),
     );
   }
 
   /* -------------acciones------------- */
    
-   void _processActionDetailButton(String servicio) {
-
-
-
-   }  
+ 
 
 }

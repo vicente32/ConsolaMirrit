@@ -1,4 +1,5 @@
 import '../../share_prefs/preferencia_usuario.dart';
+import '../../models/estadoDr/status_response.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -12,25 +13,20 @@ class StatusProvider {
     print(basicAuth);
   
     final response = await http.get('${prefs.ip}/api/dragon/status',
-        headers: <String, String>{'Authorization': basicAuth});
+      headers: <String, String>{'Authorization': basicAuth});
+
     final decodedData = json.decode(response.body);
     print(decodedData);
   
 
     if (response.statusCode == 200) {
+        final res = GetStatusResponse.fromJson(decodedData);
+        print(res);
       return "Conexión exitosa";
-    } else {
-      return "Conexión fallida";
+    } 
+      else {
+        return "Conexión fallida";
     }
+
   }
 }
-
-/* --------- servicios ---------- */
-// Future<bool> getStatus() async {
-//   RecepcionRequest recepcionRequest =
-//       new RecepcionRequest(prefs.ip, prefs.user, prefs.password);
-
-//   final url = 'https://${prefs.ip}/api/dragon/status';
-
-//   final response =
-//       await http.post(url, body: recepcionRequestToJson(recepcionRequest));

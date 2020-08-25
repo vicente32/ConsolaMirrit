@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class StatusProvider {
   final prefs = new PreferenciasUsuario();
 
-  Future<bool> getStatus() async {
+  Future<GetStatusResponseBloc> getStatus() async {
     String username = prefs.user;
     String password = prefs.password;
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
@@ -23,11 +23,11 @@ class StatusProvider {
         final res = GetStatusResponseBloc.fromJson(decodedData);
         print(res);
       print ("Conexión exitosa");
-      return true;
+      return res;
     } 
       else {
         print ("Conexión fallida");
-        return false;
+        return null;
     }
   
   }

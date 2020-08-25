@@ -24,8 +24,8 @@ class DragonFishBloc {
     return DragonFishBloc(flagDragonOK: json['flagDragonOK']);
   }
      
-     Widget dragonState()  {
-     final checkDragon = new DragonFishBloc();
+  Widget dragonState()  {
+    final checkDragon = new DragonFishBloc();
      if (checkDragon.flagDragonOK == true) {
       return Text("OK");
      }
@@ -53,4 +53,15 @@ class ActiveMQBloc {
   factory ActiveMQBloc.fromJson(Map<String, dynamic> json) {
     return ActiveMQBloc(flagActiveMQOK: json['flagActiveMQOK']);
   }
+
+  Widget activeState()  {
+    final checkActive = new ActiveMQBloc();
+     if (checkActive.flagActiveMQOK == true) {
+      return Text("OK");
+     }
+     else{
+       return Text("Error");
+     }
+  }
+
 }

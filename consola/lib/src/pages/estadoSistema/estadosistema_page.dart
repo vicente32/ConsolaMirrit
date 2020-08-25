@@ -48,7 +48,7 @@ class EstadoSistemaState extends State<EstadoSistemaPage> {
   /* --------- form principal ---------- */
   Widget _crearMenuForm(BuildContext context) {
     final bloc = Provider.of(context);
-    bloc.getStatusDragon();    
+    bloc.getStatus();
     return Column(children: <Widget>[
       SizedBox(height: 30),
       _crearInputVersion(),
@@ -71,7 +71,6 @@ class EstadoSistemaState extends State<EstadoSistemaPage> {
 
   /* --------------Tabla----------*/
   Widget _crearTabla(BuildContext context, StatusBloc bloc) {
-    DragonFishBloc dragonFish = new DragonFishBloc();
 
     return DataTable(columns: [
       DataColumn(label: Text("Servicios")),
@@ -80,12 +79,12 @@ class EstadoSistemaState extends State<EstadoSistemaPage> {
     ], rows: [
       DataRow(cells: [
         DataCell(Text("ActiveMQ")),
-        DataCell(Text(estadoA)),
+        DataCell(getEstadoActive(bloc)),
         DataCell(_botonDetalleServicio(bloc))
       ]),
       DataRow(cells: [
         DataCell(Text("Woo")),
-        DataCell(Text(estadoW)),
+        DataCell(getEstadoWoo(bloc)),
         DataCell(_botonDetalleServicio(bloc))
       ]),
       DataRow(cells: [
@@ -119,13 +118,50 @@ class EstadoSistemaState extends State<EstadoSistemaPage> {
 
   /* -------------acciones------------- */
 
-  void _estadoDragon()async  {
-    await getStatus.getStatus();
-  }
-
   Widget getEstadoDragon(StatusBloc bloc){
       return StreamBuilder(
         stream: bloc.estadoDragonStream,
+        builder: (BuildContext context,
+          AsyncSnapshot<bool> snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data) {
+              return Text('OK',
+                style: TextStyle(fontSize: 20));
+            }
+               else {
+                return Text('Error',
+                  style: TextStyle(fontSize: 20));
+              }
+            } else {
+              return Text("Procesando");
+            }
+          });
+  }
+
+  Widget getEstadoActive(StatusBloc bloc){
+      return StreamBuilder(
+        stream: bloc.estadoActiveStream,
+        builder: (BuildContext context,
+          AsyncSnapshot<bool> snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data) {
+              return Text('OK',
+                style: TextStyle(fontSize: 20));
+            }
+               else {
+                return Text('Error',
+                  style: TextStyle(fontSize: 20));
+              }
+            } else {
+              return Text("Procesando");
+            }
+          });
+  }
+
+
+  Widget getEstadoWoo(StatusBloc bloc){
+      return StreamBuilder(
+        stream: bloc.estadoWooStream,
         builder: (BuildContext context,
           AsyncSnapshot<bool> snapshot) {
           if (snapshot.hasData) {

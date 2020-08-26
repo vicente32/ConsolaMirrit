@@ -1,3 +1,5 @@
+import 'package:jmc_hh/src/models/estadoDr/reprart_response.dart';
+
 import '../../share_prefs/preferencia_usuario.dart';
 import '../../pages/reprArt/reprocesarArt_page.dart';
 import 'dart:convert';
@@ -9,7 +11,7 @@ class ReprocesarArticuloProvider {
 
   Future<String> getArt(String articulo) async {
     String username = prefs.user;
-    
+
     String password = prefs.password;
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
     print(basicAuth); 
@@ -22,10 +24,10 @@ class ReprocesarArticuloProvider {
   
   
     if (response.statusCode == 200) {
-        //final res = String.fromJson(decodedData);
-        //print(res);
-      print ("Conexión exitosa");
-      return "done";
+        final res = RepArtResponse.fromJsonMap(decodedData);
+        print(res);
+        print ("Conexión exitosa");
+        return res.status;
     } 
       else {
         print ("Conexión fallida");

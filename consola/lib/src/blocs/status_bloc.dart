@@ -32,8 +32,7 @@ class StatusBloc {
 
   // eventos
   void getStatus() async {
-    final estadoGral =
-        await _statusProvider.getStatus();
+    final estadoGral =  await _statusProvider.getStatus();
       _estadoDragonController.sink.add(estadoGral.dragonFish.flagDragonOK);
       _estadoActiveController.sink.add(estadoGral.activeMQ.flagActiveMQOK);
             _estadoWooController.sink.add(estadoGral.woo.flagWooOK);

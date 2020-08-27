@@ -8,10 +8,10 @@ void mostrarMensaje(
         return AlertDialog(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-          title: Text('JDE ATINA'),
+          title: Text('Consola Mirrit'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
-            children: <Widget>[Text(mensaje), FlutterLogo(size: 100.0)],
+            children: <Widget>[Text(mensaje)],
           ),
           actions: <Widget>[
             FlatButton(

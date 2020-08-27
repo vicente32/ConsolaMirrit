@@ -115,7 +115,7 @@ class MenuPrincipalPage extends StatelessWidget {
   _crearBotonSettings(BuildContext context) {
     return ButtonTheme(
         minWidth: 250.0,
-        height: 60.0,
+        height: 60.0, 
         child: RaisedButton(
           child: Text('Settings'),
           color: Colors.white,

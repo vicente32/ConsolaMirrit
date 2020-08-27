@@ -72,10 +72,10 @@ Widget _crearInputArt(BuildContext context, ArticuloBloc blocArt) {
                   ReprocesarArticuloProvider provider = new ReprocesarArticuloProvider();
                   final res = await provider.getArt(value);
                   utils.mostrarMensaje(
-                      context: context,
-                      mensaje: res.toString(),
-                      onBtnOkPressed: () => Navigator.of(context).pop());  
-                 _controller.clear();
+                    context: context,
+                    mensaje: res.toString(),
+                    onBtnOkPressed: () => Navigator.of(context).pop());  
+                  _controller.clear();
                 }));
       },
     );

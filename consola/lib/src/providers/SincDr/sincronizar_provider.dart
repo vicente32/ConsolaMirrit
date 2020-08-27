@@ -32,6 +32,34 @@ class SincronizarProvider {
         print ("Conexión fallida");
         return null;
     }
+  } 
+  Future<SincResponse> sincDate(String codigo) async {
+
+    String username = prefs.user;
+    String password = prefs.password;
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
+    print(basicAuth); 
+    String url = prefs.ip;
+    url = url + "/api/dragon/start-articulo-sync-desde/";
+    url = url + prefs.date.toString();
+    print(url);
   
+    final response = await http.get(url,
+      headers: <String, String>{'Authorization': basicAuth});
+
+    final decodedData = json.decode(response.body);
+    print(decodedData);
+  
+  
+    if (response.statusCode == 200) {
+        final res = SincResponse.fromJsonMap(decodedData);
+        print(res);
+        print ("Conexión exitosa");
+        return res;
+    } 
+      else {
+        print ("Conexión fallida");
+        return null;
+    }
   } 
 }

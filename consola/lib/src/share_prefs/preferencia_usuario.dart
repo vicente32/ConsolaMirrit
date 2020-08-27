@@ -20,7 +20,6 @@ class PreferenciasUsuario {
   get ip {
     return _prefs.getString('ip') ?? '';
   }
-
   set ip(String value) {
     _prefs.setString('ip', value);
   }
@@ -29,7 +28,6 @@ class PreferenciasUsuario {
   get user {
     return _prefs.getString('user') ?? '';
   }
-
   set user(String value) {
     _prefs.setString('user', value);
   }
@@ -37,8 +35,21 @@ class PreferenciasUsuario {
   get password {
     return _prefs.getString('password') ?? '';
   }
-
   set password(String value) {
     _prefs.setString('password', value);
+  }
+
+  get date {
+    return _prefs.getString('date') ?? '';
+  }
+  set date(String value) {
+    _prefs.setString('date', value);
+  }
+
+  get ecommerce {
+    return _prefs.getString('ecommerce') ?? '';
+  }
+  set ecommerce(String value) {
+    _prefs.setString('ecommerce', value);
   }
 }

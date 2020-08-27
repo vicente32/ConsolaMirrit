@@ -11,7 +11,7 @@ class SincronizarECommercePage extends StatefulWidget {
 
 @override
 class _SinECommercePageState extends State<SincronizarECommercePage> {
-  //TextEditingController _textControllerIp;
+  TextEditingController _textControllerEcommerce;
   bool valorTodos = false;
   bool valorWoo = false;
   bool valorShopify = false;
@@ -24,7 +24,7 @@ class _SinECommercePageState extends State<SincronizarECommercePage> {
   @override
   void initState() {
     super.initState();
-    //_textControllerIp = new TextEditingController(text: prefs.ip);
+    _textControllerEcommerce = new TextEditingController(text: prefs.ecommerce);
   }
 
   /* --------- build ---------- */

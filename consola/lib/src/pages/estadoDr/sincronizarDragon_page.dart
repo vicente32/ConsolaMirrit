@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../share_prefs/preferencia_usuario.dart';
 import 'package:jmc_hh/src/blocs/provider.dart';
 import 'package:jmc_hh/src/blocs/sincronizar_bloc.dart';
 import '../../providers/SincDr/sincronizar_provider.dart';
@@ -15,11 +16,19 @@ class SincronizarDragonPage extends StatefulWidget {
 }
 
 class SincronizarDragonState extends State<SincronizarDragonPage> {
-
+  TextEditingController _textControllerDate;
+  final prefs = new PreferenciasUsuario();
   final sincProvider = new SincronizarProvider();
 
   /* --------- build ---------- */
   @override
+
+    void initState() {
+    super.initState();
+    _textControllerDate = new TextEditingController(text: prefs.date);
+
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -43,9 +52,11 @@ class SincronizarDragonState extends State<SincronizarDragonPage> {
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                _crearInputDate(),
+                SizedBox(height: 30),
                 _desdeUltimoProceso(bloc),
                 SizedBox(height: 20),
-                _desdeFecha(),
+                _desdeFecha(bloc),
                 SizedBox(height: 20),
               ]),
         ),
@@ -54,6 +65,22 @@ class SincronizarDragonState extends State<SincronizarDragonPage> {
   }
 
   /* --------- componentes del form ---------- */
+
+  Widget _crearInputDate() {
+    return TextField(
+      autofocus: true,
+      controller: _textControllerDate,
+      textCapitalization: TextCapitalization.sentences,
+      decoration: InputDecoration(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+          helperText: 'Date (formato: 2019-08-31T00:00:00)',
+          icon: Icon(Icons.calendar_today)), 
+      onChanged: (value) {
+        prefs.date = value;
+      },
+    );
+  }
+
 
   _desdeUltimoProceso(SincronizarBloc bloc) {
     return StreamBuilder(
@@ -73,24 +100,45 @@ class SincronizarDragonState extends State<SincronizarDragonPage> {
     );
   }
 
-  _desdeFecha() {
-    return ButtonTheme(
-        minWidth: 250.0,
-        height: 60.0,
-        child: RaisedButton(
-          child: Text('Desde fecha a definir'),
-          color: Colors.blue,
-          textColor: Colors.white,
-          shape: StadiumBorder(),
-          onPressed: () {
-          } 
-        ));
+  _desdeFecha( SincronizarBloc bloc ) {
+    return StreamBuilder(
+      stream: bloc.sincStream,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return ButtonTheme(
+          minWidth: 250.0,
+          height: 60.0,
+          child: RaisedButton(
+            child: Text('Desde fecha a definir'),
+            color: Colors.blue,
+            textColor: Colors.white,
+            shape: StadiumBorder(),
+            onPressed: () => _accionSincFecha(bloc)
+          ));
+      }
+    );
   }
 
 /* ACCIONES DE BOTONES */
 
  void _accionBotonUltProceso(SincronizarBloc bloc) async {
     final respuesta = await sincProvider.sincUP(bloc.cod);
+      if(respuesta != null){
+          utils.mostrarMensaje(
+            context: context,
+            mensaje: "Transacción generada: " + respuesta.transaccion.toString(),
+            onBtnOkPressed: () => Navigator.of(context).pop());          
+      }
+      else {
+          utils.mostrarMensaje(
+            context: context,
+            mensaje: "Error al generar transacción",
+            onBtnOkPressed: () => Navigator.of(context).pop());          
+      }
+  }
+
+
+  _accionSincFecha(SincronizarBloc bloc) async {
+    final respuesta = await sincProvider.sincDate(bloc.cod);
       if(respuesta != null){
           utils.mostrarMensaje(
             context: context,

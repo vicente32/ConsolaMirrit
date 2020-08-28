@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:jmc_hh/src/widgets/menu_widgets.dart';
+import 'package:jmc_hh/src/blocs/provider.dart';
+import 'package:jmc_hh/src/blocs/refreshEcom_bloc.dart';
+import 'package:jmc_hh/src/providers/refreshEcommerce/refresh_ecom_provider.dart';
 import '../../share_prefs/preferencia_usuario.dart';
+import 'package:jmc_hh/src/utils/utils.dart' as utils;
 
 class SincronizarECommercePage extends StatefulWidget {
   static final String routName = 'sincronizarECommercer';
@@ -12,12 +15,11 @@ class SincronizarECommercePage extends StatefulWidget {
 @override
 class _SinECommercePageState extends State<SincronizarECommercePage> {
   TextEditingController _textControllerEcommerce;
-  bool valorTodos = false;
-  bool valorWoo = false;
-  bool valorShopify = false;
+
 
   /* PREFERENCIAS */
   final prefs = new PreferenciasUsuario();
+    final refreshProvider = new RefreshProvider();
   String radioItem;
 
   /* --------- initState ---------- */
@@ -27,85 +29,99 @@ class _SinECommercePageState extends State<SincronizarECommercePage> {
     _textControllerEcommerce = new TextEditingController(text: prefs.ecommerce);
   }
 
-  /* --------- build ---------- */
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _crearAppBar(),
-      drawer: MenuWidget(),
-      body: _crearBody(),
-    );
-  }
-
   /* --------- appBar ---------- */
-  Widget _crearAppBar() {
-    return AppBar(
-        title: Text('Sincronizar E-Commerce'),
+  Widget build(context) {
+    return Scaffold(
+      appBar: AppBar(
         centerTitle: true,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.backspace),
-            onPressed: () => Navigator.pop(context),
-          )
-        ]);
+        title: Text(
+          'Sincronizar Ecommerce',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 25.0,
+            fontWeight: FontWeight.w300,
+          ),
+        ),
+      ),
+      body: Center(
+          child: Stack(children: <Widget>[
+        _crearMenuForm(context),
+      ])),
+    );
   }
 
   /* --------- form principal ---------- */
-  Widget _crearBody() {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          SizedBox(height: 30),
-          _crearlista(context),
-          SizedBox(height: 200),
-          _crearbotonSincronizar(context),
-        ],
-      ),
+ Widget _crearMenuForm(BuildContext context) {
+    return SingleChildScrollView(
+      child: Column(children: <Widget>[
+        Container(
+          padding: EdgeInsets.all(10.0),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 30),
+                _crearInputEcommerce(),
+                SizedBox(height: 30),
+                _crearbotonSincronizar(context)
+              ]),
+        ),
+      ]),
     );
   }
 
-  /* ----------- Boton Sincronizar ---------*/
-  Widget _crearlista(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        CheckboxListTile(
-          value: valorTodos,
-          onChanged: (bool newValue) {
-            setState(() {
-              valorTodos = newValue;
-              valorWoo = newValue;
-              valorShopify = newValue;
-            });
-          },
-          title: Text('Todos'),
-        ),
-        CheckboxListTile(
-          value: valorWoo,
-          onChanged: (bool newValue) {
-            setState(() {
-              valorWoo = newValue;
-            });
-          },
-          title: Text('Woo'),
-        ),
-        CheckboxListTile(
-          value: valorShopify,
-          onChanged: (bool newValue) {
-            setState(() {
-              valorShopify = newValue;
-            });
-          },
-          title: Text('Shopify'),
-        ),
-      ],
+
+Widget _crearInputEcommerce() {
+    return TextField(
+      autofocus: true,
+      controller: _textControllerEcommerce,
+      textCapitalization: TextCapitalization.sentences,
+      decoration: InputDecoration(
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+          helperText: 'woo/shopify',
+          icon: Icon(Icons.shop)), 
+      onChanged: (value) {
+        prefs.ecommerce = value;
+      },
     );
   }
 
   /* ----------- Boton Sincronizar ---------*/
   Widget _crearbotonSincronizar(BuildContext context) {
+    final bloc = Provider.refresEcommercehBloc(context);
     return RaisedButton(
+      elevation: 1.0,
       child: Text("Sincronizar"),
+      color: Colors.white,
+      textColor: Colors.blue,
       shape: StadiumBorder(),
-      onPressed: () {},
+      onPressed: () {
+        _accionBotonSincronizar(bloc);
+      },
     );
   }
+
+/* --------- acciones --------- */
+
+  void _accionBotonSincronizar(RefreshEcommerceBloc bloc) async {
+
+    final respuesta = await refreshProvider.sincEcom(bloc.ecommerce);
+      if(respuesta != null){
+          utils.mostrarMensaje(
+            context: context,
+            mensaje: "Transacción generada: " + respuesta.transaccion.toString(),
+            onBtnOkPressed: () => Navigator.of(context).pop());          
+      }
+      else {
+        utils.mostrarMensaje(
+          context: context,
+          mensaje: "Error al generar transacción",
+          onBtnOkPressed: () => Navigator.of(context).pop());
+      }
+
+
+
+  }
+  
+
+
 }

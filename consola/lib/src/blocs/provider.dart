@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jmc_hh/src/blocs/articulo_bloc.dart';
+import 'package:jmc_hh/src/blocs/refreshEcom_bloc.dart';
 import 'package:jmc_hh/src/blocs/sincronizar_bloc.dart';
 import 'package:jmc_hh/src/blocs/status_bloc.dart';
 
@@ -9,6 +10,8 @@ class Provider extends InheritedWidget {
   final statusBloc = new StatusBloc();
   final artBloc = new ArticuloBloc();
   final sincBloc = new SincronizarBloc();
+  final refreshBloc = new RefreshEcommerceBloc();
+
 
   factory Provider({Key key, Widget child}) {
     if (_instancia == null) {
@@ -33,5 +36,9 @@ class Provider extends InheritedWidget {
 
   static SincronizarBloc sincronizarBloc(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<Provider>().sincBloc;
+  }
+
+  static RefreshEcommerceBloc refresEcommercehBloc(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<Provider>().refreshBloc;
   }
 }

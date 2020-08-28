@@ -3,19 +3,22 @@ import '../../share_prefs/preferencia_usuario.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class SincronizarProvider {
+class RefreshProvider {
   final prefs = new PreferenciasUsuario();
-  //final items = new ReprocesarArticuloPage();
 
   // ignore: missing_return
-  Future<SincResponse> sincEcommerce(String codigo) async {
+  Future<SincResponse> sincEcom(String codigo) async {
 
     String username = prefs.user;
     String password = prefs.password;
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
     print(basicAuth); 
+    String url = prefs.ip;
+    url = url + "/api/dragon/refresh-articulos/";
+    url = url + prefs.ecommerce.toString();
+    print(url);
   
-    final response = await http.get('${prefs.ip}/api/dragon/refresh-articulos/',
+    final response = await http.get(url,
       headers: <String, String>{'Authorization': basicAuth});
 
     final decodedData = json.decode(response.body);

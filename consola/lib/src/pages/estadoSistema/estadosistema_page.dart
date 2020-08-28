@@ -29,7 +29,13 @@ class EstadoSistemaState extends State<EstadoSistemaPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Estado Sistema'),
+        title: Text('Estado Sistema',
+          style: TextStyle(
+            fontSize: 25.0,
+            fontWeight: FontWeight.w300
+          ),
+        
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.backspace),

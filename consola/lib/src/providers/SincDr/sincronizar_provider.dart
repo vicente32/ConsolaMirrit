@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 
 class SincronizarProvider {
   final prefs = new PreferenciasUsuario();
-  //final items = new ReprocesarArticuloPage();
 
   // ignore: missing_return
   Future<SincResponse> sincUP(String codigo) async {

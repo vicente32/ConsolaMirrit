@@ -12,13 +12,15 @@ class MenuPrincipalPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           'Consola MIRRIT',
-            style: TextStyle(
+          style: TextStyle(
+            color: Colors.white,
             fontSize: 25.0,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w300,
           ),  
         ),
       ),
@@ -59,6 +61,8 @@ class MenuPrincipalPage extends StatelessWidget {
         minWidth: 250.0,
         height: 60.0,
         child: RaisedButton(
+          elevation: 1.0,
+          autofocus: true,
           child: Text('Estado de Sistema'),
           color: Colors.white,
           textColor: Colors.blue,
@@ -75,6 +79,7 @@ class MenuPrincipalPage extends StatelessWidget {
         minWidth: 250.0,
         height: 60.0,
         child: RaisedButton(
+          elevation: 1.0,
           child: Text('Reprocesar Articulo'),
           color: Colors.white,
           textColor: Colors.blue,
@@ -91,6 +96,7 @@ class MenuPrincipalPage extends StatelessWidget {
         minWidth: 250.0,
         height: 60.0,
         child: RaisedButton(
+          elevation: 1.0,
           child: Text('Sincronizar Articulos Dragon'),
           color: Colors.white,
           textColor: Colors.blue,
@@ -104,6 +110,7 @@ class MenuPrincipalPage extends StatelessWidget {
         minWidth: 250.0,
         height: 60.0,
         child: RaisedButton(
+          elevation: 1.0,
           child: Text('Sincronizar E-Commerce'),
           color: Colors.white,
           textColor: Colors.blue,
@@ -117,6 +124,7 @@ class MenuPrincipalPage extends StatelessWidget {
         minWidth: 250.0,
         height: 60.0, 
         child: RaisedButton(
+          elevation: 1.0,
           child: Text('Settings'),
           color: Colors.white,
           textColor: Colors.blue,

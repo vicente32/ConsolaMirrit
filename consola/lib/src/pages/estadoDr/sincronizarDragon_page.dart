@@ -16,7 +16,9 @@ class SincronizarDragonPage extends StatefulWidget {
 }
 
 class SincronizarDragonState extends State<SincronizarDragonPage> {
+
   TextEditingController _textControllerDate;
+
   final prefs = new PreferenciasUsuario();
   final sincProvider = new SincronizarProvider();
 
@@ -33,7 +35,14 @@ class SincronizarDragonState extends State<SincronizarDragonPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Sincronizar Dragonfish'),
+        title: Text(
+          'Sincronizar Dragonfish',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 25.0,
+            fontWeight: FontWeight.w300,
+          ),
+          ),
       ),
       body: Center(
           child: Stack(children: <Widget>[
@@ -52,6 +61,7 @@ class SincronizarDragonState extends State<SincronizarDragonPage> {
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                SizedBox(height: 25),
                 _crearInputDate(),
                 SizedBox(height: 30),
                 _desdeUltimoProceso(bloc),
@@ -108,7 +118,7 @@ class SincronizarDragonState extends State<SincronizarDragonPage> {
           minWidth: 250.0,
           height: 60.0,
           child: RaisedButton(
-            child: Text('Desde fecha a definir'),
+            child: Text('Desde fecha definida'),
             color: Colors.blue,
             textColor: Colors.white,
             shape: StadiumBorder(),
@@ -146,10 +156,10 @@ class SincronizarDragonState extends State<SincronizarDragonPage> {
             onBtnOkPressed: () => Navigator.of(context).pop());          
       }
       else {
-          utils.mostrarMensaje(
-            context: context,
-            mensaje: "Error al generar transacción",
-            onBtnOkPressed: () => Navigator.of(context).pop());          
+        utils.mostrarMensaje(
+          context: context,
+          mensaje: "Error al generar transacción",
+          onBtnOkPressed: () => Navigator.of(context).pop());
       }
   }
 

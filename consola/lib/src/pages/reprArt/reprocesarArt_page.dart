@@ -24,7 +24,14 @@ class ReprocesarArticuloState extends State<ReprocesarArticuloPage> with TickerP
       ),
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Reprocesar Artículo'),
+        title: Text(
+          'Reprocesar Artículo',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 25.0,
+            fontWeight: FontWeight.w300
+          ),
+          ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.backspace),
@@ -65,7 +72,7 @@ Widget _crearInputArt(BuildContext context, ArticuloBloc blocArt) {
                         borderRadius: BorderRadius.circular(20.0)),
                     helperText: 'Artículo',
                     errorText: snapshot.error),
-                onChanged: (value) {
+                  onChanged: (value) {
                   blocArt.changeArticulo(value);
                 },
                 onSubmitted: (value) async {

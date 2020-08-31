@@ -39,7 +39,16 @@ class _SettingsPageState extends State<SettingsPage> {
 
   /* --------- appBar ---------- */
   Widget _crearAppBar() {
-    return AppBar(title: Text('Settings'), actions: <Widget>[
+    return AppBar(title: Text(
+      'Settings',
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 25.0,
+        fontWeight: FontWeight.w300,
+      )
+      ), 
+    centerTitle: true,
+    actions: <Widget>[
       // action button
       IconButton(
         icon: Icon(Icons.save),
@@ -116,20 +125,22 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _crearInputPassword() {
     return StreamBuilder(
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-      return Container(
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return Container(
           child: TextField(
             controller: _textControllerPass,
             obscureText: true,
             decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-            helperText: 'Password',
-            errorText: snapshot.error,
-            icon: Icon(Icons.lock)),
-        onChanged: (value) {
-          prefs.password = value;
-        },
-      ));
-    });
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+              helperText: 'Password',
+              errorText: snapshot.error,
+              icon: Icon(Icons.lock)),
+            onChanged: (value) {
+              prefs.password = value;
+            },
+          )
+        );
+      }
+    );
   }
 }

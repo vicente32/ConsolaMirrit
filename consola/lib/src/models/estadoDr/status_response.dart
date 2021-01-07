@@ -1,4 +1,4 @@
-	import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GetStatusResponseBloc {
@@ -10,9 +10,9 @@ class GetStatusResponseBloc {
 
   factory GetStatusResponseBloc.fromJson(Map<String, dynamic> json) {
     return GetStatusResponseBloc(
-      dragonFish: DragonFishBloc.fromJson(json['DragonFish']),
-      woo: WooBloc.fromJson(json['woo']),
-      activeMQ: ActiveMQBloc.fromJson(json['ActiveMQ']));
+        dragonFish: DragonFishBloc.fromJson(json['DragonFish']),
+        woo: WooBloc.fromJson(json['woo']),
+        activeMQ: ActiveMQBloc.fromJson(json['ActiveMQ']));
   }
 }
 
@@ -23,18 +23,15 @@ class DragonFishBloc {
   factory DragonFishBloc.fromJson(Map<String, dynamic> json) {
     return DragonFishBloc(flagDragonOK: json['flagDragonOK']);
   }
-     
-  Widget dragonState()  {
+
+  Widget dragonState() {
     final checkDragon = new DragonFishBloc();
-     if (checkDragon.flagDragonOK == true) {
+    if (checkDragon.flagDragonOK == true) {
       return Text("OK");
-     }
-     else{
-       return Text("Error");
-     }
+    } else {
+      return Text("Error");
+    }
   }
-
-
 }
 
 class WooBloc {
@@ -54,14 +51,12 @@ class ActiveMQBloc {
     return ActiveMQBloc(flagActiveMQOK: json['flagActiveMQOK']);
   }
 
-  Widget activeState()  {
+  Widget activeState() {
     final checkActive = new ActiveMQBloc();
-     if (checkActive.flagActiveMQOK == true) {
+    if (checkActive.flagActiveMQOK == true) {
       return Text("OK");
-     }
-     else{
-       return Text("Error");
-     }
+    } else {
+      return Text("Error");
+    }
   }
-
 }

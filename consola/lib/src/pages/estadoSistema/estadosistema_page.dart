@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
+import '../../providers/estadoDr/dragon_provider.dart';
 import 'package:jmc_hh/src/blocs/provider.dart';
 import 'package:jmc_hh/src/blocs/status_bloc.dart';
 import '../../models/estadoDr/status_response.dart';
-import '../../providers/estadoDr/dragon_provider.dart';
 
 class EstadoSistemaPage extends StatefulWidget {
   static final String routName = 'estadoSistema';
 
   @override
-  EstadoSistemaState  createState() => new EstadoSistemaState();
-
+  EstadoSistemaState createState() => new EstadoSistemaState();
 }
 
 class EstadoSistemaState extends State<EstadoSistemaPage> {
-
   final getStatus = new StatusProvider();
   final dragonState = new DragonFishBloc();
 
@@ -22,19 +20,15 @@ class EstadoSistemaState extends State<EstadoSistemaPage> {
   String estadoW = "No funciona";
   String estadoS = "No funciona";
 
-  /* --------- build ---------- */    
+  /* --------- build ---------- */
   @override
   Widget build(BuildContext context) {
-    //_estadoDragon();    
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Estado Sistema',
-          style: TextStyle(
-            fontSize: 25.0,
-            fontWeight: FontWeight.w300
-          ),
-        
+        title: Text(
+          'Estado Sistema',
+          style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w300),
         ),
         actions: <Widget>[
           IconButton(
@@ -57,27 +51,12 @@ class EstadoSistemaState extends State<EstadoSistemaPage> {
     bloc.getStatus();
     return Column(children: <Widget>[
       SizedBox(height: 30),
-      _crearInputVersion(),
-      SizedBox(height: 30),
       _crearTabla(context, bloc),
     ]);
   }
 
-  /* ------------Input verison---------------- */
-  Widget _crearInputVersion() {
-    return TextField(
-      autofocus: true,
-      textCapitalization: TextCapitalization.sentences,
-      decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(15.0)),
-          helperText: 'Version',
-          icon: Icon(Icons.arrow_right)),
-    );
-  }
-
   /* --------------Tabla----------*/
   Widget _crearTabla(BuildContext context, StatusBloc bloc) {
-
     return DataTable(columns: [
       DataColumn(label: Text("Servicios")),
       DataColumn(label: Text("Estado")),
@@ -108,81 +87,61 @@ class EstadoSistemaState extends State<EstadoSistemaPage> {
 
 /* ----------------- BOTONES ----------------- */
 
-
-
   Widget _botonDetalleServicio(StatusBloc bloc) {
     return RaisedButton(
-      shape: StadiumBorder(), 
-      color: Colors.indigo[50],
-      child: Text("DETALLLE"),
-      onPressed: () => dragonState
-
-    );
+        shape: StadiumBorder(),
+        color: Colors.indigo[50],
+        child: Text("DETALLLE"),
+        onPressed: () => dragonState);
   }
-
-
 
   /* -------------acciones------------- */
 
-  Widget getEstadoDragon(StatusBloc bloc){
-      return StreamBuilder(
+  Widget getEstadoDragon(StatusBloc bloc) {
+    return StreamBuilder(
         stream: bloc.estadoDragonStream,
-        builder: (BuildContext context,
-          AsyncSnapshot<bool> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data) {
-              return Text('OK',
-                style: TextStyle(fontSize: 20));
-            }
-               else {
-                return Text('Error',
-                  style: TextStyle(fontSize: 20));
-              }
+              return Text('OK', style: TextStyle(fontSize: 20));
             } else {
-              return Text("Procesando");
+              return Text('Error', style: TextStyle(fontSize: 20));
             }
-          });
+          } else {
+            return Text("Procesando");
+          }
+        });
   }
 
-  Widget getEstadoActive(StatusBloc bloc){
-      return StreamBuilder(
+  Widget getEstadoActive(StatusBloc bloc) {
+    return StreamBuilder(
         stream: bloc.estadoActiveStream,
-        builder: (BuildContext context,
-          AsyncSnapshot<bool> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data) {
-              return Text('OK',
-                style: TextStyle(fontSize: 20));
-            }
-               else {
-                return Text('Error',
-                  style: TextStyle(fontSize: 20));
-              }
+              return Text('OK', style: TextStyle(fontSize: 20));
             } else {
-              return Text("Procesando");
+              return Text('Error', style: TextStyle(fontSize: 20));
             }
-          });
+          } else {
+            return Text("Procesando");
+          }
+        });
   }
 
-
-  Widget getEstadoWoo(StatusBloc bloc){
-      return StreamBuilder(
+  Widget getEstadoWoo(StatusBloc bloc) {
+    return StreamBuilder(
         stream: bloc.estadoWooStream,
-        builder: (BuildContext context,
-          AsyncSnapshot<bool> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data) {
-              return Text('OK',
-                style: TextStyle(fontSize: 20));
-            }
-               else {
-                return Text('Error',
-                  style: TextStyle(fontSize: 20));
-              }
+              return Text('OK', style: TextStyle(fontSize: 20));
             } else {
-              return Text("Procesando");
+              return Text('Error', style: TextStyle(fontSize: 20));
             }
-          });
+          } else {
+            return Text("Procesando");
+          }
+        });
   }
-
 }

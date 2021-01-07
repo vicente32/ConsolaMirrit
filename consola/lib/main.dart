@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'src/blocs/provider.dart';
-import 'src/pages/general/menuppal_page.dart';
+import 'src/pages/general/settings_page.dart';
 import 'src/routes/routes.dart';
 import 'src/share_prefs/preferencia_usuario.dart';
 
@@ -19,14 +19,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Provider(
-      child: MaterialApp(
-        title: 'Consola MIRRIT',
-        debugShowCheckedModeBanner: false,
-        initialRoute: MenuPrincipalPage.routName,
-        routes: getApplicationRoutes(),
-        theme: ThemeData(
-          primarySwatch: Colors.blue
-        )
-    ));
+        child: MaterialApp(
+            title: 'Consola MIRRIT',
+            debugShowCheckedModeBanner: false,
+            initialRoute: SettingsPage.routName,
+            routes: getApplicationRoutes(),
+            theme: ThemeData(primarySwatch: Colors.blue)));
   }
 }

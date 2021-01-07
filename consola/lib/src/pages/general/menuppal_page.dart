@@ -21,7 +21,7 @@ class MenuPrincipalPage extends StatelessWidget {
             color: Colors.white,
             fontSize: 25.0,
             fontWeight: FontWeight.w300,
-          ),  
+          ),
         ),
       ),
       body: Center(
@@ -61,17 +61,16 @@ class MenuPrincipalPage extends StatelessWidget {
         minWidth: 250.0,
         height: 60.0,
         child: RaisedButton(
-          elevation: 1.0,
-          autofocus: true,
-          child: Text('Estado de Sistema'),
-          color: Colors.white,
-          textColor: Colors.blue,
-          shape: StadiumBorder(),
-          onPressed: () {
-            _procesarAccionEstadoSistema(context);
-            print("Abrimos estado sistema");
-          } 
-        ));
+            elevation: 1.0,
+            autofocus: true,
+            child: Text('Status'),
+            color: Colors.white,
+            textColor: Colors.blue,
+            shape: StadiumBorder(),
+            onPressed: () {
+              _procesarAccionEstadoSistema(context);
+              print("Abrimos estado sistema");
+            }));
   }
 
   _crearBotonProcesarArt(BuildContext context) {
@@ -79,16 +78,15 @@ class MenuPrincipalPage extends StatelessWidget {
         minWidth: 250.0,
         height: 60.0,
         child: RaisedButton(
-          elevation: 1.0,
-          child: Text('Reprocesar Articulo'),
-          color: Colors.white,
-          textColor: Colors.blue,
-          shape: StadiumBorder(),
-          onPressed: () {
-           _procesarProcesarArt(context);
-            print("reprocesar articulo");          
-          }
-        ));
+            elevation: 1.0,
+            child: Text('Reprocesar Articulo'),
+            color: Colors.white,
+            textColor: Colors.blue,
+            shape: StadiumBorder(),
+            onPressed: () {
+              _procesarProcesarArt(context);
+              print("reprocesar articulo");
+            }));
   }
 
   _crearBotonSincronizarDragon(BuildContext context) {
@@ -122,10 +120,10 @@ class MenuPrincipalPage extends StatelessWidget {
   _crearBotonSettings(BuildContext context) {
     return ButtonTheme(
         minWidth: 250.0,
-        height: 60.0, 
+        height: 60.0,
         child: RaisedButton(
           elevation: 1.0,
-          child: Text('Settings'),
+          child: Text('Login'),
           color: Colors.white,
           textColor: Colors.blue,
           shape: StadiumBorder(),

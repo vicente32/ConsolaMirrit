@@ -3,7 +3,7 @@ import 'package:jmc_hh/src/blocs/articulo_bloc.dart';
 import 'package:jmc_hh/src/blocs/refreshEcom_bloc.dart';
 import 'package:jmc_hh/src/blocs/sincronizar_bloc.dart';
 import 'package:jmc_hh/src/blocs/status_bloc.dart';
-
+import '../blocs/login_bloc.dart';
 
 class Provider extends InheritedWidget {
   static Provider _instancia;
@@ -11,7 +11,7 @@ class Provider extends InheritedWidget {
   final artBloc = new ArticuloBloc();
   final sincBloc = new SincronizarBloc();
   final refreshBloc = new RefreshEcommerceBloc();
-
+  final loginBloc = new LoginBloc();
 
   factory Provider({Key key, Widget child}) {
     if (_instancia == null) {
@@ -40,5 +40,9 @@ class Provider extends InheritedWidget {
 
   static RefreshEcommerceBloc refresEcommercehBloc(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<Provider>().refreshBloc;
+  }
+
+  static LoginBloc logginBloc(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<Provider>().loginBloc;
   }
 }

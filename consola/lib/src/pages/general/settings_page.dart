@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jmc_hh/src/pages/general/menuppal_page.dart';
 import 'package:jmc_hh/src/widgets/menu_widgets.dart';
 import '../../share_prefs/preferencia_usuario.dart';
+import '../../providers/login/login_provider.dart';
 
 class SettingsPage extends StatefulWidget {
   static final String routName = 'settings';
@@ -14,6 +16,7 @@ class _SettingsPageState extends State<SettingsPage> {
   TextEditingController _textControllerIp;
   TextEditingController _textControllerUser;
   TextEditingController _textControllerPass;
+  final getLogin = new LoginProvider();
 
   /* PREFERENCIAS */
   final prefs = new PreferenciasUsuario();
@@ -32,42 +35,20 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _crearAppBar(),
-      drawer: MenuWidget(),
       body: _crearBody(),
     );
   }
 
   /* --------- appBar ---------- */
   Widget _crearAppBar() {
-    return AppBar(title: Text(
-      'Settings',
-      style: TextStyle(
-        color: Colors.white,
-        fontSize: 25.0,
-        fontWeight: FontWeight.w300,
-      )
-      ), 
-    centerTitle: true,
-    actions: <Widget>[
-      // action button
-      IconButton(
-        icon: Icon(Icons.save),
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Text("Datos Registrados"),
-                  shape: StadiumBorder(),
-                );
-              });
-        },
-      ),
-      IconButton(
-        icon: Icon(Icons.backspace),
-        onPressed: () => Navigator.pop(context),
-      )
-    ]);
+    return AppBar(
+        title: Text('Login',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 25.0,
+              fontWeight: FontWeight.w300,
+            )),
+        centerTitle: true);
   }
 
   /* --------- form principal ---------- */
@@ -82,6 +63,7 @@ class _SettingsPageState extends State<SettingsPage> {
           SizedBox(height: 30),
           _crearInputPassword(),
           SizedBox(height: 30),
+          _loginButton(context),
         ],
       ),
     );
@@ -109,9 +91,10 @@ class _SettingsPageState extends State<SettingsPage> {
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         return Container(
             child: TextField(
-              controller: _textControllerUser,
-              decoration: InputDecoration(
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+          controller: _textControllerUser,
+          decoration: InputDecoration(
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
               helperText: 'User',
               errorText: snapshot.error,
               icon: Icon(Icons.account_circle)),
@@ -125,22 +108,55 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _crearInputPassword() {
     return StreamBuilder(
-      builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return Container(
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+      return Container(
           child: TextField(
-            controller: _textControllerPass,
-            obscureText: true,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
-              helperText: 'Password',
-              errorText: snapshot.error,
-              icon: Icon(Icons.lock)),
-            onChanged: (value) {
-              prefs.password = value;
-            },
-          )
-        );
-      }
-    );
+        controller: _textControllerPass,
+        obscureText: true,
+        decoration: InputDecoration(
+            border:
+                OutlineInputBorder(borderRadius: BorderRadius.circular(20.0)),
+            helperText: 'Password',
+            errorText: snapshot.error,
+            icon: Icon(Icons.lock)),
+        onChanged: (value) {
+          prefs.password = value;
+        },
+      ));
+    });
+  }
+
+  _loginButton(BuildContext context) {
+    return ButtonTheme(
+        minWidth: 100.0,
+        height: 35.0,
+        child: RaisedButton(
+            child: Text('Login'),
+            color: Colors.white,
+            textColor: Colors.blue,
+            shape: StadiumBorder(),
+            onPressed: () {
+              _accionLogin(context);
+              print('boton login');
+            }));
+  }
+
+  _accionLogin(BuildContext context) async {
+    LoginProvider provider = new LoginProvider();
+    final res = await provider.getLogin();
+    print(res);
+    print(getLogin);
+    if (res.statusCode == 200) {
+      Navigator.pushNamed(context, MenuPrincipalPage.routName);
+    } else if (res.statusCode != 200) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Error con Login"),
+              shape: StadiumBorder(),
+            );
+          });
+    }
   }
 }

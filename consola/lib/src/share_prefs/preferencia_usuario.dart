@@ -16,10 +16,18 @@ class PreferenciasUsuario {
     this._prefs = await SharedPreferences.getInstance();
   }
 
+/*-------PROCESS LAYER IP NGROK-------*/
+  String _process = "https://c0424f19ea99.ngrok.io";
+
+  String get process => _process;
+
+  set process(String value) => _process = value;
+
   /* Configuracion */
   get ip {
     return _prefs.getString('ip') ?? '';
   }
+
   set ip(String value) {
     _prefs.setString('ip', value);
   }
@@ -28,6 +36,7 @@ class PreferenciasUsuario {
   get user {
     return _prefs.getString('user') ?? '';
   }
+
   set user(String value) {
     _prefs.setString('user', value);
   }
@@ -35,6 +44,7 @@ class PreferenciasUsuario {
   get password {
     return _prefs.getString('password') ?? '';
   }
+
   set password(String value) {
     _prefs.setString('password', value);
   }
@@ -42,6 +52,7 @@ class PreferenciasUsuario {
   get date {
     return _prefs.getString('date') ?? '';
   }
+
   set date(String value) {
     _prefs.setString('date', value);
   }
@@ -49,6 +60,7 @@ class PreferenciasUsuario {
   get ecommerce {
     return _prefs.getString('ecommerce') ?? '';
   }
+
   set ecommerce(String value) {
     _prefs.setString('ecommerce', value);
   }

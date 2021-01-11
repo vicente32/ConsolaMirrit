@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jmc_hh/src/pages/general/menuppal_page.dart';
-import 'package:jmc_hh/src/widgets/menu_widgets.dart';
 import '../../share_prefs/preferencia_usuario.dart';
 import '../../providers/login/login_provider.dart';
 
@@ -57,7 +56,7 @@ class _SettingsPageState extends State<SettingsPage> {
       child: ListView(
         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
         children: <Widget>[
-          _crearInputIp(),
+          // _crearInputIp(),
           SizedBox(height: 30),
           _crearInputUser(),
           SizedBox(height: 30),

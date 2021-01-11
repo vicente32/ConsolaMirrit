@@ -16,7 +16,7 @@ class StatusProvider {
     print(basicAuth);
 
     final response =
-        await http.get('${prefs.process}/api/dragon/status', headers: {
+        await http.get('${prefs.process}/api/system/status', headers: {
       HttpHeaders.authorizationHeader: basicAuth,
       HttpHeaders.acceptCharsetHeader: html
     });

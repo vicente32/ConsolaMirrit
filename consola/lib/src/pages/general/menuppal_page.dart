@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'settings_page.dart';
-import '../estadoDr/sincronizarDragon_page.dart';
-import '../reprArt/reprocesarArt_page.dart';
+// import 'settings_page.dart';
+// import '../estadoDr/sincronizarDragon_page.dart';
+import '../../pages/system/system_page.dart';
 import '../estadoSistema/estadosistema_page.dart';
-import '../SincronizarE-commerce/SincronizarECommerce_page.dart';
+// import '../SincronizarE-commerce/SincronizarECommerce_page.dart';
 
 class MenuPrincipalPage extends StatelessWidget {
   static final String routName = 'MenuPrincipalPage';
@@ -40,8 +40,10 @@ class MenuPrincipalPage extends StatelessWidget {
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                _crearBotonEstadoSistema(context),
+                _botonEstadoSistema(context),
                 SizedBox(height: 20),
+                _botonSystem(context),
+                SizedBox(height: 20)
                 // _crearBotonProcesarArt(context),
                 // SizedBox(height: 20),
                 // _crearBotonSincronizarDragon(context),
@@ -56,7 +58,7 @@ class MenuPrincipalPage extends StatelessWidget {
   }
 
   /* --------- componentes del form ---------- */
-  Widget _crearBotonEstadoSistema(BuildContext context) {
+  Widget _botonEstadoSistema(BuildContext context) {
     return ButtonTheme(
         minWidth: 250.0,
         height: 60.0,
@@ -73,82 +75,82 @@ class MenuPrincipalPage extends StatelessWidget {
             }));
   }
 
-  _crearBotonProcesarArt(BuildContext context) {
+  _botonSystem(BuildContext context) {
     return ButtonTheme(
         minWidth: 250.0,
         height: 60.0,
         child: RaisedButton(
             elevation: 1.0,
-            child: Text('Reprocesar Articulo'),
+            child: Text('System'),
             color: Colors.white,
             textColor: Colors.blue,
             shape: StadiumBorder(),
             onPressed: () {
-              _procesarProcesarArt(context);
-              print("reprocesar articulo");
+              _procesarSystem(context);
+              print("abrir pagina system");
             }));
   }
 
-  _crearBotonSincronizarDragon(BuildContext context) {
-    return ButtonTheme(
-        minWidth: 250.0,
-        height: 60.0,
-        child: RaisedButton(
-          elevation: 1.0,
-          child: Text('Sincronizar Articulos Dragon'),
-          color: Colors.white,
-          textColor: Colors.blue,
-          shape: StadiumBorder(),
-          onPressed: () => _procesarSincronizarDragon(context),
-        ));
-  }
+  // _crearBotonSincronizarDragon(BuildContext context) {
+  //   return ButtonTheme(
+  //       minWidth: 250.0,
+  //       height: 60.0,
+  //       child: RaisedButton(
+  //         elevation: 1.0,
+  //         child: Text('Sincronizar Articulos Dragon'),
+  //         color: Colors.white,
+  //         textColor: Colors.blue,
+  //         shape: StadiumBorder(),
+  //         onPressed: () => _procesarSincronizarDragon(context),
+  //       ));
+  // }
 
-  _crearBotonSincronizarEcommerce(BuildContext context) {
-    return ButtonTheme(
-        minWidth: 250.0,
-        height: 60.0,
-        child: RaisedButton(
-          elevation: 1.0,
-          child: Text('Sincronizar E-Commerce'),
-          color: Colors.white,
-          textColor: Colors.blue,
-          shape: StadiumBorder(),
-          onPressed: () => _procesarSincronizarEcommerce(context),
-        ));
-  }
+  // _crearBotonSincronizarEcommerce(BuildContext context) {
+  //   return ButtonTheme(
+  //       minWidth: 250.0,
+  //       height: 60.0,
+  //       child: RaisedButton(
+  //         elevation: 1.0,
+  //         child: Text('Sincronizar E-Commerce'),
+  //         color: Colors.white,
+  //         textColor: Colors.blue,
+  //         shape: StadiumBorder(),
+  //         onPressed: () => _procesarSincronizarEcommerce(context),
+  //       ));
+  // }
 
-  _crearBotonSettings(BuildContext context) {
-    return ButtonTheme(
-        minWidth: 250.0,
-        height: 60.0,
-        child: RaisedButton(
-          elevation: 1.0,
-          child: Text('Login'),
-          color: Colors.white,
-          textColor: Colors.blue,
-          shape: StadiumBorder(),
-          onPressed: () => _procesarAccionBotonSettings(context),
-        ));
-  }
+  // _crearBotonSettings(BuildContext context) {
+  //   return ButtonTheme(
+  //       minWidth: 250.0,
+  //       height: 60.0,
+  //       child: RaisedButton(
+  //         elevation: 1.0,
+  //         child: Text('Login'),
+  //         color: Colors.white,
+  //         textColor: Colors.blue,
+  //         shape: StadiumBorder(),
+  //         onPressed: () => _procesarAccionBotonSettings(context),
+  //       ));
+  // }
 
   /* --------- acciones ---------- */
   _procesarAccionEstadoSistema(BuildContext context) {
     Navigator.pushNamed(context, EstadoSistemaPage.routName);
   }
 
-  _procesarProcesarArt(BuildContext context) {
-    Navigator.pushNamed(context, ReprocesarArticuloPage.routName);
+  _procesarSystem(BuildContext context) {
+    Navigator.pushNamed(context, SystemPage.routName);
   }
 
-  _procesarSincronizarDragon(BuildContext context) {
-    Navigator.pushNamed(context, SincronizarDragonPage.routName);
-  }
+  // _procesarSincronizarDragon(BuildContext context) {
+  //   Navigator.pushNamed(context, SincronizarDragonPage.routName);
+  // }
 
-  _procesarSincronizarEcommerce(BuildContext context) {
-    Navigator.pushNamed(context, SincronizarECommercePage.routName);
-  }
+  // _procesarSincronizarEcommerce(BuildContext context) {
+  //   Navigator.pushNamed(context, SincronizarECommercePage.routName);
+  // }
 
-  _procesarAccionBotonSettings(BuildContext context) {
-    Navigator.pushNamed(context, SettingsPage.routName);
-  }
+  // _procesarAccionBotonSettings(BuildContext context) {
+  //   Navigator.pushNamed(context, SettingsPage.routName);
+  // }
 }

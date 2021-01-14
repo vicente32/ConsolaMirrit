@@ -49,10 +49,12 @@ class EstadoSistemaState extends State<EstadoSistemaPage> {
   Widget _crearMenuForm(BuildContext context) {
     final bloc = Provider.of(context);
     bloc.getStatus();
-    return Column(children: <Widget>[
-      SizedBox(height: 30),
-      _crearTabla(context, bloc),
-    ]);
+    return Column(
+      children: <Widget>[
+        SizedBox(height: 30),
+        _crearTabla(context, bloc),
+      ]
+    );
   }
 
   /* --------------Tabla----------*/

@@ -17,7 +17,7 @@ class PreferenciasUsuario {
   }
 
 /*-------PROCESS LAYER IP NGROK-------*/
-  String _process = "https://c0424f19ea99.ngrok.io";
+  String _process = "https://e4dcfec0a0c5.ngrok.io";
 
   String get process => _process;
 

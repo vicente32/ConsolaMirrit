@@ -5,6 +5,7 @@ import '../pages/estadoDr/sincronizarDragon_page.dart';
 import '../pages/estadoSistema/estadosistema_page.dart';
 import '../pages/general/menuppal_page.dart';
 import '../pages/general/settings_page.dart';
+import '../pages/system/system_page.dart';
 
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return <String, WidgetBuilder>{
@@ -12,6 +13,9 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
 
     /* MENU PRINCIPAL */
     MenuPrincipalPage.routName: (BuildContext context) => MenuPrincipalPage(),
+
+    /* SYSTEM START/STOP */
+    SystemPage.routName: (BuildContext context) => SystemPage(),
 
     /* SINCRONIZACION DRAGON */
     SincronizarDragonPage.routName: (BuildContext context) => SincronizarDragonPage(),

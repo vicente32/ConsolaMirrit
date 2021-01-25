@@ -5,13 +5,15 @@ class GetStatusResponseBloc {
   DragonFishBloc dragonFish;
   WooBloc woo;
   ActiveMQBloc activeMQ;
+  ShopifyBloc shopify;
 
-  GetStatusResponseBloc({this.dragonFish, this.woo, this.activeMQ});
+  GetStatusResponseBloc({this.dragonFish, this.woo, this.activeMQ, this.shopify});
 
   factory GetStatusResponseBloc.fromJson(Map<String, dynamic> json) {
     return GetStatusResponseBloc(
         dragonFish: DragonFishBloc.fromJson(json['DragonFish']),
         woo: WooBloc.fromJson(json['woo']),
+        shopify: ShopifyBloc.fromJson(json['shopify']),
         activeMQ: ActiveMQBloc.fromJson(json['ActiveMQ']));
   }
 }
@@ -42,6 +44,17 @@ class WooBloc {
     return WooBloc(flagWooOK: json['flagOK']);
   }
 }
+
+
+class ShopifyBloc {
+  bool flagShopifyOK;
+  ShopifyBloc({this.flagShopifyOK});
+
+  factory ShopifyBloc.fromJson(Map<String, dynamic> json) {
+    return ShopifyBloc(flagShopifyOK: json['flagOK']);
+  }
+}
+
 
 class ActiveMQBloc {
   bool flagActiveMQOK;

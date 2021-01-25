@@ -5,6 +5,7 @@ class StatusBloc {
   final _estadoDragonController = BehaviorSubject<bool>();
   final _estadoActiveController = BehaviorSubject<bool>();
   final _estadoWooController =    BehaviorSubject<bool>();
+  final _estadoShopiController =    BehaviorSubject<bool>();
 
   // Provider
   final _statusProvider = new StatusProvider();
@@ -13,21 +14,25 @@ class StatusBloc {
   Stream<bool> get estadoDragonStream =>  _estadoDragonController.stream;
   Stream<bool> get estadoActiveStream =>  _estadoActiveController.stream;
   Stream<bool> get estadoWooStream =>     _estadoWooController.stream;
+  Stream<bool> get estadoShopiStream =>     _estadoWooController.stream;
   
   // Insertar valores al stream
   Function(bool) get changeEstadoDragon =>  _estadoDragonController.sink.add;
   Function(bool) get changeEstadoActive =>  _estadoActiveController.sink.add;
   Function(bool) get changeEstadoWoo =>     _estadoWooController.sink.add;
+  Function(bool) get changeEstadoShopi =>     _estadoWooController.sink.add;
   
   // Obtener ultimo valor ingresado a los streams
   bool get estadoDragon =>  _estadoDragonController.value;
   bool get estadoActive =>  _estadoActiveController .value;
   bool get estadoWoo =>   _estadoWooController .value;
+  bool get estadoShopi =>   _estadoWooController .value;
   
   dispose() {
     _estadoActiveController?.close();
     _estadoDragonController?.close();
     _estadoWooController?.close();
+    _estadoShopiController?.close();
   }
 
   // eventos
@@ -36,6 +41,7 @@ class StatusBloc {
     _estadoDragonController.sink.add(estadoGral.dragonFish.flagDragonOK);
     _estadoActiveController.sink.add(estadoGral.activeMQ.flagActiveMQOK);
     _estadoWooController.sink.add(estadoGral.woo.flagWooOK);
+    _estadoShopiController.sink.add(estadoGral.shopify.flagShopifyOK);
   }
 
 }

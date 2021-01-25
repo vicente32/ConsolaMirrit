@@ -15,10 +15,10 @@ class EstadoSistemaState extends State<EstadoSistemaPage> {
   final getStatus = new StatusProvider();
   final dragonState = new DragonFishBloc();
 
-  String estadoA = "No funciona";
-  String estadoD = "No funciona";
-  String estadoW = "No funciona";
-  String estadoS = "No funciona";
+  String estadoA = "Procesando";
+  String estadoD = "Procesando";
+  String estadoW = "Procesando";
+  String estadoS = "Procesando";
 
   /* --------- build ---------- */
   @override
@@ -76,7 +76,7 @@ class EstadoSistemaState extends State<EstadoSistemaPage> {
       ]),
       DataRow(cells: [
         DataCell(Text("Shopify")),
-        DataCell(Text(estadoS)),
+        DataCell(getEstadoShopi(bloc)),
         DataCell(_botonDetalleServicio(bloc))
       ]),
       DataRow(cells: [
@@ -134,6 +134,21 @@ class EstadoSistemaState extends State<EstadoSistemaPage> {
   Widget getEstadoWoo(StatusBloc bloc) {
     return StreamBuilder(
         stream: bloc.estadoWooStream,
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          if (snapshot.hasData) {
+            if (snapshot.data) {
+              return Text('OK', style: TextStyle(fontSize: 20));
+            } else {
+              return Text('Error', style: TextStyle(fontSize: 20));
+            }
+          } else {
+            return Text("Procesando");
+          }
+        });
+  }
+  Widget getEstadoShopi(StatusBloc bloc) {
+    return StreamBuilder(
+        stream: bloc.estadoShopiStream,
         builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data) {

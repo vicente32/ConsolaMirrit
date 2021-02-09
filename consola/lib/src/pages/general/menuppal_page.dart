@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../reprArt/consultarArt_page.dart';
 // import 'settings_page.dart';
 // import '../estadoDr/sincronizarDragon_page.dart';
 import '../../pages/system/system_page.dart';
@@ -43,8 +44,8 @@ class MenuPrincipalPage extends StatelessWidget {
                 _botonEstadoSistema(context),
                 SizedBox(height: 20),
                 _botonSystem(context),
-                SizedBox(height: 20)
-                // _crearBotonProcesarArt(context),
+                SizedBox(height: 20),
+                _botonConsultarArt(context),
                 // SizedBox(height: 20),
                 // _crearBotonSincronizarDragon(context),
                 // SizedBox(height: 20),
@@ -91,19 +92,19 @@ class MenuPrincipalPage extends StatelessWidget {
             }));
   }
 
-  // _crearBotonSincronizarDragon(BuildContext context) {
-  //   return ButtonTheme(
-  //       minWidth: 250.0,
-  //       height: 60.0,
-  //       child: RaisedButton(
-  //         elevation: 1.0,
-  //         child: Text('Sincronizar Articulos Dragon'),
-  //         color: Colors.white,
-  //         textColor: Colors.blue,
-  //         shape: StadiumBorder(),
-  //         onPressed: () => _procesarSincronizarDragon(context),
-  //       ));
-  // }
+  _botonConsultarArt(BuildContext context) {
+    return ButtonTheme(
+        minWidth: 250.0,
+        height: 60.0,
+        child: RaisedButton(
+          elevation: 1.0,
+          child: Text('Consulta Articulo'),
+          color: Colors.white,
+          textColor: Colors.blue,
+          shape: StadiumBorder(),
+          onPressed: () => _procesarArt(context),
+        ));
+  }
 
   // _crearBotonSincronizarEcommerce(BuildContext context) {
   //   return ButtonTheme(
@@ -142,15 +143,15 @@ class MenuPrincipalPage extends StatelessWidget {
     Navigator.pushNamed(context, SystemPage.routName);
   }
 
-  // _procesarSincronizarDragon(BuildContext context) {
-  //   Navigator.pushNamed(context, SincronizarDragonPage.routName);
-  // }
+  _procesarArt(BuildContext context) {
+    Navigator.pushNamed(context, ConsultaArticuloPage.routName);
 
-  // _procesarSincronizarEcommerce(BuildContext context) {
-  //   Navigator.pushNamed(context, SincronizarECommercePage.routName);
-  // }
+    // _procesarSincronizarEcommerce(BuildContext context) {
+    //   Navigator.pushNamed(context, SincronizarECommercePage.routName);
+    // }
 
-  // _procesarAccionBotonSettings(BuildContext context) {
-  //   Navigator.pushNamed(context, SettingsPage.routName);
-  // }
+    // _procesarAccionBotonSettings(BuildContext context) {
+    //   Navigator.pushNamed(context, SettingsPage.routName);
+    // }
+  }
 }

@@ -13,7 +13,7 @@ class LoginProvider {
         'Basic ' + base64Encode(utf8.encode('$username:$password'));
     print(basicAuth);
 
-    final response = await http.get('${prefs.process}/api/system/login',
+    final response = await http.get('${prefs.ip}/api/system/login',
         headers: <String, String>{'Authorization': basicAuth});
 
     final decodedData = json.decode(response.body);

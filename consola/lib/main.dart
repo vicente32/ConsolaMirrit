@@ -13,6 +13,14 @@ class AppConfig {
   static String BE_ENDPOINT;
 }
 
+ class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}
+
 void main() async {
   if (kIsWeb) {
     AppConfig.BE_ENDPOINT = '$BE_HOST/web/';
@@ -23,6 +31,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = new PreferenciasUsuario();
   await prefs.initPrefs();
+  HttpOverrides.global = new MyHttpOverrides();
 
   /* Se inicia aplicación */
   

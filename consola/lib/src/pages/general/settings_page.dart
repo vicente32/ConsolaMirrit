@@ -56,7 +56,7 @@ class _SettingsPageState extends State<SettingsPage> {
       child: ListView(
         padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
         children: <Widget>[
-          // _crearInputIp(),
+           _crearInputIp(),
           SizedBox(height: 30),
           _crearInputUser(),
           SizedBox(height: 30),

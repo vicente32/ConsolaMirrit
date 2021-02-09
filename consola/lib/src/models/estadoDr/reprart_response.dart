@@ -1,12 +1,12 @@
 
 /* --------- Modelo ---------- */
 class RepArtResponse {
-  String status;
+  String basesAdicionales;
 
-  RepArtResponse();
+  RepArtResponse(this.basesAdicionales);
 
   RepArtResponse.fromJsonMap(Map<String, dynamic> json) {
-    status = json['status'];
+    basesAdicionales = json['colorDescripcion'];
   }
 
 }
